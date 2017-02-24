@@ -1,0 +1,31 @@
+---
+
+- name: Is there only release?
+  shell: "ls -1 {{ capians_releases_path }}/ | wc -l"
+  register: releases
+
+- fail:
+    msg: "There is only release!!!"
+  when: releases.stdout <= "1"
+  
+- name: Get stats current symlink 
+  stat:
+    path: "{{ capians_deploy_to }}/current"
+  register: stat_current_dir
+
+
+- name: Delete broken release
+  file:
+    path: "{{ stat_current_dir.stat.lnk_source }}"
+    state: absent  
+  
+  # Performs symlink exchange
+- name: Change softlink to new release
+  file:
+    state: link
+    path: "{{ capians_deploy_to }}/current"
+    src:   "{{ previous_release_path.stdout }}"
+
+  
+- name: Rollback register
+  shell: 'echo "rollback was done to REVISION: $(cat {{ previous_release_path.stdout }}/REVISION )" >> {{ capians_revision }}'
