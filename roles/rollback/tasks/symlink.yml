@@ -14,7 +14,7 @@
   register: stat_current_dir
 
 
-- name: Delete broken release
+- name: Delete brocken release
   file:
     path: "{{ stat_current_dir.stat.lnk_source }}"
     state: absent  

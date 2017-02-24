@@ -9,9 +9,10 @@
      msg: "{{ git_heads.stdout_lines | regex_replace('\\\\t', ' ') }}"
   run_once: true
   
+  
 - name: GIT | Clone/update repo 
   git:
-    repo: https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}
+    repo: "{{capians_git_method}}://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}"
     bare: yes
     dest: "{{ capians_repo_path }}"
     update: yes
@@ -40,7 +41,7 @@
     path: "{{ capians_repo_path }}"
   when: result1|failed or result2|failed
 - git:
-    repo: https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}
+    repo: "{{capians_git_method}}://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}"
     bare: yes
     dest: "{{ capians_repo_path }}"
     update: yes 

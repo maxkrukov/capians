@@ -1,10 +1,15 @@
 ---
 
-action: "deploy"
+# Use git https only!!!
+
 deploy_to: "/tmp/deploy"
+
 git_repo: 
 git_user: 
 git_pass: 
 git_branch: test
-# scm: ""
+
+keep_releases: 5
+
+
 

@@ -11,7 +11,7 @@
        capians_repo_path: "{{ deploy_to }}/repo"
        capians_revision: "{{ deploy_to }}/REVISION"
        
-       capians_git_repo: "{{ git_repo }}"
+       capians_git_repo: "{{ git_repo | regex_replace('.*://', '') }}"
        capians_git_branch: "{{ git_branch }}"
        capians_git_user: "{{ git_user }}"
        capians_git_pass: "{{ git_pass }}"
@@ -19,7 +19,7 @@
        
        capians_keep_releases: "{{ keep_releases | default('5') }}"
        capians_scm: "{{ scm | default('git') }}"
-       capians_git_method: "{ git_method | default('http') }"
+       capians_git_method: "{{ git_method | default('https') }}"
    
 
     vars_files:
