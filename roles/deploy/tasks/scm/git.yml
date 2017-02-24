@@ -48,6 +48,10 @@
   
 - name: GIT | Create release`s files
   shell: "cd {{ capians_repo_path }} && git archive {{ capians_git_branch }} | tar -x -f - -C {{ capians_release_path.stdout }}"
+  
+- name: GIT | Get git revision
+  shell: "cd {{ capians_repo_path }} && git show-ref --head --dereference |  egrep '{{ capians_git_branch }}$' | awk '{print$1}' "
+  register: revision
 
 - name: GIT | Security
   #command: "sed -i 's|{{capians_git_user}}:{{capians_git_pass}}@||' {{ capians_repo_path }}/config"

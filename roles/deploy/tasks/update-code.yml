@@ -20,7 +20,7 @@
 - include: "scm/{{ capians_scm }}.yml"
 
 - name: Copy release version into REVISION file in release path
-  shell: echo "{{ test.stdout }}" > "{{ capians_release_path.stdout }}/REVISION"
+  shell: echo "{{ revision.stdout }}" > "{{ capians_release_path.stdout }}/REVISION"
 
 - include: "custom/template.yml"
   
@@ -31,5 +31,5 @@
 - include: "custom/after_symlink.yml"
 
 - name: Copy release version into REVISION file in deploy_to path
-  shell: echo "{{ test.stdout }}" > "{{ capians_revision }}"
+  shell: echo "{{ revision.stdout }}" > "{{ capians_revision }}"
   
