@@ -2,7 +2,9 @@
 Tool for deployment (deploy & rollback) via git
 
 ## About
-It is based on ansible with capistrano algorithm.
+It is based on ansible with capistrano3 algorithm.
+It keeps git repo in bare form. So it is save time 
+especially using a large repos.
 
 ## How to test
 You need to install ansible, vagrant and virtualbox
