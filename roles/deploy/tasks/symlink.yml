@@ -1,0 +1,19 @@
+---
+
+- name: Is current symlink or dir?
+  stat:
+    path: "{{ capians_deploy_to }}/current"
+  register: stat_current_dir
+
+- name: Remove current folder if it's a directory
+  file:
+    state: absent
+    path: "{{ capians_deploy_to }}/current"
+  when: stat_current_dir.stat.isdir is defined and stat_current_dir.stat.isdir
+
+# Performs symlink exchange
+- name: Change softlink to new release
+  file:
+    state: link
+    path: "{{ capians_deploy_to }}/current"
+    src:   "{{ capians_release_path.stdout }}"

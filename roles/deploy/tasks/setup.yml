@@ -1,0 +1,22 @@
+---
+# Ckeck packages
+- name: Ensure all packages have been installed
+  package:
+    state: present 
+    name: "{{ item }}"
+  with_items:
+        - git
+        - tar
+       
+    
+
+# Setup folders
+- name: Ensure deployment structure exists
+  file:
+    state: directory
+    path: "{{ item }}"
+  with_items:
+       - "{{ capians_deploy_to }}"
+       - "{{ capians_releases_path }}"
+       - "{{ capians_repo_path }}"
+

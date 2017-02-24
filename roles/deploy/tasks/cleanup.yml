@@ -1,0 +1,5 @@
+---
+# Clean up releases
+- name: Clean up releases
+  shell: ls -1dt {{ capians_releases_path }}/* | tail -n +{{ capians_keep_releases | int + 1 }} | xargs rm -rf
+  when: capians_keep_releases > 0

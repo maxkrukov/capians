@@ -1,0 +1,35 @@
+---
+# Update code deployment step
+
+- name: Set release version
+  local_action: shell date -u +%Y%m%d%H%M%S 
+  run_once: true
+  register: capians_release_version
+
+- name: Get release path
+  local_action: command echo "{{ capians_releases_path }}/{{ capians_release_version.stdout }}"
+  run_once: true
+  register: capians_release_path
+  
+# Setup release folder
+- name: Ensure release path exists
+  file:
+    state: directory
+    path: "{{ capians_release_path.stdout }}"
+
+- include: "scm/{{ capians_scm }}.yml"
+
+- name: Copy release version into REVISION file in release path
+  shell: echo "{{ test.stdout }}" > "{{ capians_release_path.stdout }}/REVISION"
+
+- include: "custom/template.yml"
+  
+- include: "custom/pre_symlink.yml"
+  
+- include: "symlink.yml"
+
+- include: "custom/after_symlink.yml"
+
+- name: Copy release version into REVISION file in deploy_to path
+  shell: echo "{{ test.stdout }}" > "{{ capians_revision }}"
+  

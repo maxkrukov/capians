@@ -1,0 +1,10 @@
+[hosts]
+vagrant1 ansible_ssh_user=vagrant ansible_ssh_host=10.10.0.10 ansible_ssh_port=22
+vagrant2 ansible_ssh_user=vagrant ansible_ssh_host=10.10.0.20 ansible_ssh_port=22
+vagrant3 ansible_ssh_user=vagrant ansible_ssh_host=10.10.0.30 ansible_ssh_port=22
+
+
+
+
+
+

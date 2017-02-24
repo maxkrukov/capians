@@ -1,0 +1,16 @@
+---
+
+- name: restart httpd
+  service: name=httpd state=restarted
+
+- name: restart apache2
+  service: name=apache2 state=restarted
+
+- name: restart nginx
+  service: name=nginx state=restarted
+  
+- name: reload php-fpm
+  service: name=php-fpm state=reloaded
+
+- name: restart php-fpm
+  service: name=php-fpm state=restarted

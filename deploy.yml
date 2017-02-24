@@ -1,0 +1,30 @@
+---
+
+  - name: Deploying code via capians!
+    hosts:  hosts
+    become: true
+
+    vars:
+       capians_deploy_to: "{{ deploy_to }}"
+       capians_releases_path: "{{ deploy_to }}/releases"
+       capians_symlink: "{{ deploy_to }}/current"
+       capians_repo_path: "{{ deploy_to }}/repo"
+       capians_revision: "{{ deploy_to }}/REVISION"
+       
+       capians_git_repo: "{{ git_repo }}"
+       capians_git_branch: "{{ git_branch }}"
+       capians_git_user: "{{ git_user }}"
+       capians_git_pass: "{{ git_pass }}"
+       capians_git_ssh_key_path: "{{ git_key }}"
+       
+       capians_keep_releases: "{{ keep_releases | default('5') }}"
+       capians_scm: "{{ scm | default('git') }}"
+       capians_git_method: "{ git_method | default('http') }"
+   
+
+    vars_files:
+        - vars
+  
+    roles:
+        - "{{ action | default('deploy') }}"
+

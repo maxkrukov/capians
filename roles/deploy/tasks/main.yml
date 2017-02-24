@@ -1,0 +1,8 @@
+---
+
+- include: "setup.yml"
+
+- include: "update-code.yml"
+
+- include: "cleanup.yml"
+

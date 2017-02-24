@@ -1,0 +1,10 @@
+---
+
+action: "deploy"
+deploy_to: "/tmp/deploy"
+git_repo: 
+git_user: 
+git_pass: 
+git_branch: test
+# scm: ""
+

@@ -1,0 +1,59 @@
+---
+
+- name: GIT | Check git repository
+  local_action: command git ls-remote --heads https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}
+  run_once: true
+  register: git_heads
+
+- debug: 
+     msg: "{{ git_heads.stdout_lines | regex_replace('\\\\t', ' ') }}"
+  run_once: true
+  
+- name: GIT | Clone/update repo 
+  git:
+    repo: https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}
+    bare: yes
+    dest: "{{ capians_repo_path }}"
+    update: yes
+  register: result1
+  ignore_errors: True
+  no_log: True
+    
+- name: GIT | Check git refs in current bare repo
+  shell: "cd {{ capians_repo_path }} && git show-ref --head --dereference |  egrep '{{ capians_git_branch }}$' | awk '{print$1}' "
+  register: test
+  when: result1|succeeded
+- debug:
+    msg: "{{ test.stdout }}"
+  when: result1|succeeded
+    
+- name: GIT | Diff refs
+  shell: "echo '{{ git_heads.stdout }}' | grep  '{{ test.stdout }}' 2>/dev/null | grep  '{{ capians_git_branch }}' 2>/dev/null "
+  register: result2
+  ignore_errors: True
+  no_log: True
+  when: result1|succeeded
+  
+- name: GIT | REclone repo (fixing repo errors)
+  file:
+    state: absent
+    path: "{{ capians_repo_path }}"
+  when: result1|failed or result2|failed
+- git:
+    repo: https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}
+    bare: yes
+    dest: "{{ capians_repo_path }}"
+    update: yes 
+  when: result1|failed or result2|failed
+  
+- name: GIT | Create release`s files
+  shell: "cd {{ capians_repo_path }} && git archive {{ capians_git_branch }} | tar -x -f - -C {{ capians_release_path.stdout }}"
+
+- name: GIT | Security
+  #command: "sed -i 's|{{capians_git_user}}:{{capians_git_pass}}@||' {{ capians_repo_path }}/config"
+  lineinfile:
+    dest: "{{ capians_repo_path }}/config"
+    regexp: '(.*){{capians_git_user}}:{{capians_git_pass}}@(.*)'
+    line: '\1\2'
+    backrefs: yes
+
