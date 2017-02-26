@@ -3,7 +3,7 @@ Tool for deployment (deploy & rollback) via git (https)
 
 ## About
 It is based on ansible with capistrano3 algorithm.
-It keeps git repo in bare form. So it is save time 
+It keeps git repo in bare form. So it saves time 
 especially using a large repos.
 
 ## How to test
