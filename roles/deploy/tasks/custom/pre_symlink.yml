@@ -1,6 +1,7 @@
 ---
 
-- script: roles/deploy/tasks/custom/pre_symlink.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
+- name: SCRIPT deploy pre_symlink
+  script: roles/deploy/tasks/custom/pre_symlink.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
   register: sometext
 
 - debug:
