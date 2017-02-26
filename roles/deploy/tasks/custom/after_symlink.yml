@@ -4,6 +4,6 @@
   register: sometext
 
 - debug: 
-     msg: "{{sometext.stdout}}"
+     msg: "{{sometext.stdout_lines}}"
 
 
