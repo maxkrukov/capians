@@ -7,7 +7,7 @@ node {
      git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
      writeFile file: 'hosts', text: hosts
 
-     sh returnStdout: true, script: """echo $templates | grep  ';' | sed 's/;/\\n/g' | grep -v '^$' | while read line ; do
+     sh returnStdout: true, script: """echo $templates | grep  ';' | sed 's/;/\\n/g' | grep -v '^\$' | while read line ; do
         echo  \"
           - fetch:
               src:   {{capians_release_path.stdout}}/`echo $line | awk '{print\$1}'`
