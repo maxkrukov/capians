@@ -8,18 +8,16 @@ node {
      writeFile file: 'hosts', text: hosts
 
 sh returnStdout: true, script: '''echo $templates | grep  ";" | sed "s|;|\\n|g" | while read line ; do
-        cat >> roles/deploy/tasks/custom/template.yml <<EOF
+        echo -e "
           - fetch:
-              src:   "{{capians_release_path.stdout}}/`echo $line | awk {print$1}`"
-              dest: "./tmp"
+              src:   \"{{capians_release_path.stdout}}/`echo $line | awk {print$1}`\"
+              dest: \"./tmp\"
               flat: yes
             run_once: true
           - template:
-              src:   "./tmp"
-              dest: "{{capians_release_path.stdout}}/`echo $line | awk {print$2}`"
-
-        EOF
-        done
+              src:   \"./tmp\"
+              dest: \"{{capians_release_path.stdout}}/`echo $line | awk {print$2}`\"
+        done >> roles/deploy/tasks/custom/template.yml
 '''
       
 
