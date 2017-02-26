@@ -2,12 +2,12 @@
 # Update code deployment step
 
 - name: Set release version
-  local_action: shell date -u +%Y%m%d%H%M%S 
+  shell: date -u +%Y%m%d%H%M%S 
   run_once: true
   register: capians_release_version
 
 - name: Get release path
-  local_action: command echo "{{ capians_releases_path }}/{{ capians_release_version.stdout }}"
+  command: echo "{{ capians_releases_path }}/{{ capians_release_version.stdout }}"
   run_once: true
   register: capians_release_path
   
