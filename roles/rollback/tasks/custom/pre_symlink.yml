@@ -1,7 +1,7 @@
 ---
 
 - name: SCRIPT rollback pre_symlink
-  script: roles/rollback/tasks/custom/pre_symlink.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
+  script: roles/rollback/tasks/custom/pre_symlink.sh  "{{previous_release_path.stdout}}" "{{capians_deploy_to}}"
   register: sometext
 
 - debug:
