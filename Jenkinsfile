@@ -7,7 +7,7 @@ node {
      git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
      writeFile file: 'hosts', text: hosts
 
-     sh """echo ${templates} | grep  ";" | sed "s|;|\\n|g" | while read line ; do
+     sh """echo $templates | grep  ";" | sed "s|;|\\n|g" | while read line ; do
 	cat >> roles/deploy/tasks/custom/template.yml <<EOF
           - fetch:
               src:   "{{capians_release_path.stdout}}/$(echo $line | awk {print$1})"
