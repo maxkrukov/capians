@@ -18,8 +18,10 @@ sh returnStdout: true, script: '''echo $templates | grep  ";" | sed "s|;|\\n|g" 
               src:   "./tmp"
               dest: "{{capians_release_path.stdout}}/`echo $line | awk {print$2}`"
 
-        EOF'''
-
+        EOF
+        done
+'''
+      
 
 //     writeFile file: 'roles/deploy/tasks/custom/template.yml', text: templates
 //     writeFile file: 'roles/deploy/tasks/custom/', text: templates
