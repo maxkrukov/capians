@@ -16,7 +16,7 @@ sh returnStdout: true, script: '''echo $templates | grep  ";" | sed "s|;|\\n|g" 
             run_once: true
           - template:
               src:   \"./tmp\"
-              dest: \"{{capians_release_path.stdout}}/`echo $line | awk {print$2}`\"
+              dest: \"{{capians_release_path.stdout}}/`echo $line | awk {print$2}`\" "
         done >> roles/deploy/tasks/custom/template.yml
 '''
       
