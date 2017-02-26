@@ -7,18 +7,18 @@ node {
      git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
      writeFile file: 'hosts', text: hosts
 
-     sh returnStdout: true, script: '''echo $templates | grep  ";" | sed "s|;|\\n|g" | grep "^$" | while read line ; do
+     sh returnStdout: true, script: """echo $templates | grep  ";" | sed "s|;|\\n|g" | grep "^$" | while read line ; do
         echo  "
           - fetch:
-              src:   \"{{capians_release_path.stdout}}/`echo $line | awk '{print\$1}'`\"
-              dest: \"./tmp\"
+              src:   \\"{{capians_release_path.stdout}}/`echo $line | awk '{print\\$1}'`\\"
+              dest: \\"./tmp\\"
               flat: yes
             run_once: true
           - template:
-              src:   \"./tmp\"
-              dest: \"{{capians_release_path.stdout}}/`echo $line | awk '{print\$2}'`\" "
+              src:   \\"./tmp\\"
+              dest: \\"{{capians_release_path.stdout}}/`echo $line | awk '{print\\$2}'`\\" "
         done >> roles/deploy/tasks/custom/template.yml
-'''
+"""
       
 
 //     writeFile file: 'roles/deploy/tasks/custom/template.yml', text: templates
