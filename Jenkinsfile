@@ -3,12 +3,13 @@ node {
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
 	currentBuild.description = "Code Deployment"
     
-    stage('Loading configs') {
-     git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
-     writeFile file: 'hosts', text: hosts
+    stage('Loading configs...') {
+        git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
+     
+        writeFile file: 'hosts', text: hosts
 
-sh returnStdout: true, script: '''echo $templates | grep  \';\' | sed \'s/;/\\n/g\' | grep -v \'^$\' | while read line ; do
-        echo  "
+        sh returnStdout: true, script: '''echo $templates | grep  \';\' | sed \'s/;/\\n/g\' | grep -v \'^$\' | while read line ; do
+          echo  "
           - fetch:
               src:   \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$1}\'`\\\"
               dest: \\\"./tmp\\\"
@@ -17,12 +18,10 @@ sh returnStdout: true, script: '''echo $templates | grep  \';\' | sed \'s/;/\\n/
           - template:
               src:   \\\"./tmp\\\"
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'` \\\" "
-        done >> roles/deploy/tasks/custom/template.yml'''
+                   done >> roles/deploy/tasks/custom/template.yml'''
       
-
-//     writeFile file: 'roles/deploy/tasks/custom/template.yml', text: templates
-//     writeFile file: 'roles/deploy/tasks/custom/', text: templates
-//     writeFile file: 'roles/deploy/tasks/custom/', text: templates
+      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.yml', text: pre_symlink
+      writeFile file: 'roles/deploy/tasks/custom/after_symlink.yml', text: after_symlink
     }
 
     stage('Deploying...') {
