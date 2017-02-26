@@ -22,10 +22,10 @@ node {
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'` \\\" "
                    done >> roles/deploy/tasks/custom/template.yml'''
       
-      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.yml', text: deploy_pre_symlink
-      writeFile file: 'roles/deploy/tasks/custom/after_symlink.yml', text: deploy_after_symlink
-      writeFile file: 'roles/rollback/tasks/custom/pre_symlink.yml', text: rollback_pre_symlink
-      writeFile file: 'roles/rollback/tasks/custom/after_symlink.yml', text: rollback_after_symlink
+      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.sh', text: deploy_pre_symlink
+      writeFile file: 'roles/deploy/tasks/custom/after_symlink.sh', text: deploy_after_symlink
+      writeFile file: 'roles/rollback/tasks/custom/pre_symlink.sh', text: rollback_pre_symlink
+      writeFile file: 'roles/rollback/tasks/custom/after_symlink.sh', text: rollback_after_symlink
     }
 
     stage('Deploying...') {

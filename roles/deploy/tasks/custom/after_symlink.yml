@@ -1,2 +1,6 @@
 ---
 
+- script: roles/deploy/tasks/custom/after_symlink.sh 
+
+
+
