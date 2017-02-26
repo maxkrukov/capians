@@ -10,12 +10,14 @@ node {
 
         sh returnStdout: true, script: '''echo $templates | grep  \';\' | sed \'s/;/\\n/g\' | grep -v \'^$\' | while read line ; do
           echo  "
-          - fetch:
+          - name: Fetching template `echo $line | awk \'{print$1}\'`
+            fetch:
               src:   \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$1}\'`\\\"
               dest: \\\"./tmp\\\"
               flat: yes
             run_once: true
-          - template:
+          - name: Running template `echo $line | awk \'{print$1}\'`
+            template:
               src:   \\\"./tmp\\\"
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'` \\\" "
                    done >> roles/deploy/tasks/custom/template.yml'''
