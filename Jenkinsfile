@@ -8,15 +8,15 @@ node {
      
         writeFile file: 'hosts', text: hosts
 
-        sh returnStdout: true, script: '''echo $templates | grep  \';\' | sed \'s/;/\\n/g\' | grep -v \'^$\' | while read line ; do
+        sh  script: '''echo $templates | grep  \';\' | sed \'s/;/\\n/g\' | grep -v \'^$\' | while read line ; do
           echo  "
-          - name: Fetching template `echo $line | awk \'{print$1}\'`
+          - name: Fetching template !!! `echo $line | awk \'{print$1}\'` !!!
             fetch:
               src:   \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$1}\'`\\\"
               dest: \\\"./tmp\\\"
               flat: yes
             run_once: true
-          - name: Running template `echo $line | awk \'{print$1}\'`
+          - name: Running template !!! `echo $line | awk \'{print$1}\'` !!!
             template:
               src:   \\\"./tmp\\\"
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'` \\\" "
