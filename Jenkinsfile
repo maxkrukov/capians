@@ -1,12 +1,15 @@
 node {
-    //https://github.com/maxkrukov/capians.git
-    
     step([$class: 'WsCleanup'])
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
 	currentBuild.description = "Code Deployment"
     
     stage('Loading configs') {
      git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
+     writeFile file: 'hosts', text: hosts
+
+     writeFile file: 'roles/deploy/tasks/custom/template.yml', text: templates
+//     writeFile file: 'roles/deploy/tasks/custom/', text: templates
+//     writeFile file: 'roles/deploy/tasks/custom/', text: templates
     }
 
     stage('Deploying...') {
