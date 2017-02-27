@@ -74,7 +74,7 @@ BUILD URL: ${buildUrl}/console
 Project URL: http://${git_branch}.${domain}
 """ 
 
-  def msg = subject + details
+  def msg = "${subject}${details}"
   
   sh 'curl -s --max-time 10 -d "chat_id=${chat_id}&disable_web_page_preview=1&text=${msg}" https://api.telegram.org/bot${token}/sendMessage'
 
