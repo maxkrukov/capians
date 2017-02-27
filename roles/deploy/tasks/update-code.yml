@@ -23,10 +23,14 @@
   shell: echo "{{ revision.stdout }}" > "{{ capians_release_path.stdout }}/REVISION"
 
 - include: "custom/template.yml"
+
+- include: "custom/pre_symlink_once.yml"
   
 - include: "custom/pre_symlink.yml"
   
 - include: "symlink.yml"
+
+- include: "custom/after_symlink_once.yml"
 
 - include: "custom/after_symlink.yml"
 

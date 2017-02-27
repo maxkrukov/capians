@@ -6,10 +6,13 @@
 
 - include: "check.yml"
 
+- include: "custom/pre_symlink_once.yml"
+
 - include: "custom/pre_symlink.yml"
 
 - include: "symlink.yml"
 
 - include: "custom/after_symlink.yml"
 
+- include: "custom/after_symlink_once.yml"
 
