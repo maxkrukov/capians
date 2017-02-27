@@ -67,7 +67,7 @@ ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 
   def details = """Build Action: ${action} 
 ${user_build}
-BUILD URL: ${env.BUILD_URL}
+BUILD URL: ${env.JENKINS_URL}/job/${env.JOB_NAME}/env.BUILD_NUMBER}/console
 Project URL: http://${git_branch}.storage.agere.com.ua
 """ 
 
