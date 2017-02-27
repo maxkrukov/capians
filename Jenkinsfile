@@ -53,10 +53,11 @@ node {
     stage('Sending msg via Telegram') {
 
   def buildStatus = 'Success'
-  def colorName = 'RED'
-  def colorCode = '#FF0000'
-  def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
-					"""
+  def subject = """############################
+${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+############################
+"""
+
   def summary = "${subject} (${env.BUILD_URL})"
   def action = action
   def email_error = env.capture
@@ -67,12 +68,8 @@ node {
       """).trim()
 
   def details = """Build Action: ${action} 
-${user_build} 
-Deploy Status: ${buildStatus}
-Console: ${env.BUILD_URL}/console 
-${env.JOB_NAME} [${env.BUILD_NUMBER}]
-STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]
-Check build running at ${env.BUILD_URL} ${env.JOB_NAME} [${env.BUILD_NUMBER}]"""
+${user_build}
+""" 
 
 build job: 'Telegram', parameters: [text(name: 'msg', value: subject + details)]
 
