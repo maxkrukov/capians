@@ -75,7 +75,7 @@ Project URL: http://${git_branch}.${domain}
 
   env.MSG = (subject + details)
   
-sh ''' for i in "${chat_id}" ; do
+sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
    curl -s --max-time 10 -d "chat_id=${i}&disable_web_page_preview=1&text=${MSG}" https://api.telegram.org/bot${token}/sendMessage
 	done '''
 
