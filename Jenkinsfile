@@ -52,6 +52,7 @@ node {
 
     stage('Sending msg via Telegram') {
 
+  def buildStatus = 'Success'
   def colorName = 'RED'
   def colorCode = '#FF0000'
   def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
