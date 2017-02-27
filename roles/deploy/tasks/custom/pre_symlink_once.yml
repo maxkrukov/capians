@@ -4,6 +4,17 @@
   script: roles/deploy/tasks/custom/pre_symlink_once.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
   run_once: yes
   register: sometext
-
+  ignore_errors: yes
+  
 - debug:
      msg: "{{sometext.stdout_lines}}"
+ 
+ 
+- name: Delete release if it is brocken
+  file:
+     path: "{{capians_release_path.stdout}}"
+     state: absent
+  when: sometext|failed
+
+- command: /bin/false
+  when: sometext|failed   

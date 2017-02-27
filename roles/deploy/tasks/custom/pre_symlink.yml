@@ -3,6 +3,16 @@
 - name: SCRIPT deploy pre_symlink
   script: roles/deploy/tasks/custom/pre_symlink.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
   register: sometext
-
+  ignore_errors: yes
+  
 - debug:
      msg: "{{sometext.stdout_lines}}"
+
+- name: Delete release if it is brocken
+  file:
+     path: "{{capians_release_path.stdout}}"
+     state: absent
+  when: sometext|failed
+
+- command: /bin/false
+  when: sometext|failed   
