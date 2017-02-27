@@ -52,7 +52,6 @@ node {
 
     stage('Sending msg via Telegram') {
 
-  def buildUrl = currentBuild.absoluteUrl
   def buildStatus = 'Success'
   
   def subject = """############################
@@ -70,7 +69,7 @@ ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 
   def details = """Build Action: ${action} 
 ${user_build}
-BUILD URL: ${buildUrl}/console
+BUILD URL: ${BUILD_URL}/console
 Project URL: http://${git_branch}.${domain}
 """ 
 
