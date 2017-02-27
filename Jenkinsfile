@@ -49,10 +49,8 @@ node {
                 vars: 'empty'
             ]
     }
-    stage('Sending msg via Telegram') {
 
-def notifyBuild(String buildStatus = 'STARTED') {
-  buildStatus =  buildStatus ?: 'SUCCESS'
+    stage('Sending msg via Telegram') {
 
   def colorName = 'RED'
   def colorCode = '#FF0000'
@@ -68,26 +66,9 @@ def notifyBuild(String buildStatus = 'STARTED') {
   def details = """<p>Build Action: ${action} </p> <p>${user_build} </p><p>Deploy Status: ${buildStatus}<p>Console: <a href='${env.BUILD_URL}/console'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p><p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
     <p>Check build running at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
 
-  if (buildStatus == 'STARTED') {
-	color = 'YELLOW'
-	colorCode = '#FFFF00'
-	details = """<p>Build Action: ${action}</p> <p>${user_build} </p><p>Deploy Status: ${buildStatus}<p>Console: <a href='${env.BUILD_URL}/console'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p><p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check build running at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
-  } else if (buildStatus == 'SUCCESS') {
-	color = 'GREEN'
-	colorCode = '#00FF00'
-	details = """<p>Build Action: ${action}</p> <p>${user_build} </p><p>Deploy Status: ${buildStatus}<p>Console: <a href='${env.BUILD_URL}/console'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p><p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check build running at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
-  } else {
-	color = 'RED'
-	colorCode = '#FF0000'
-	details = """<p>Build Action: ${action}</p> <p>${user_build}<p>Deploy Status: ${buildStatus}<p>Console: <a href='${env.BUILD_URL}/console'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p><p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check build running at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p><p>Error: ${email_error}</p>"""
-  }
-
-
 build job: 'Telegram', parameters: [text(name: 'msg', value: subject + details)]
 
     }
 
 }
+
