@@ -1,0 +1,9 @@
+---
+
+- name: RUN_ONCE SCRIPT rollback after_symlink
+  script: roles/rollback/tasks/custom/after_symlink_once.sh  "{{previous_release_path.stdout}}" "{{capians_deploy_to}}"
+  run_once: yes
+  register: sometext
+
+- debug:
+     msg: "{{sometext.stdout_lines}}"

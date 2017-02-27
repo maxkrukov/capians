@@ -26,6 +26,11 @@ node {
       writeFile file: 'roles/deploy/tasks/custom/after_symlink.sh', text: deploy_after_symlink
       writeFile file: 'roles/rollback/tasks/custom/pre_symlink.sh', text: rollback_pre_symlink
       writeFile file: 'roles/rollback/tasks/custom/after_symlink.sh', text: rollback_after_symlink
+    
+      writeFile file: 'roles/deploy/tasks/custom/pre_symlink_once.sh', text: deploy_pre_symlink_once
+      writeFile file: 'roles/deploy/tasks/custom/after_symlink_once.sh', text: deploy_after_symlink_once
+      writeFile file: 'roles/rollback/tasks/custom/pre_symlink_once.sh', text: rollback_pre_symlink_once
+      writeFile file: 'roles/rollback/tasks/custom/after_symlink_once.sh', text: rollback_after_symlink_once
     }
 
     stage('Deploying...') {
