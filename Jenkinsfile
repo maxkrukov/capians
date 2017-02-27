@@ -29,7 +29,6 @@ node {
     }
 
     stage('Deploying...') {
-        writeFile file: 'hosts', text: hosts
         ansiblePlaybook colorized: false, 
             credentialsId: credsID, 
             playbook: 'deploy.yml', 
