@@ -4,10 +4,15 @@
   shell: "echo {{ capians_releases_path }}/$(ls -1t {{ capians_releases_path }} | head -2 | tail -1)"
   register: previous_release_path
 
+- include: "check.yml"
+
+- include: "custom/pre_symlink_once.yml"
+
 - include: "custom/pre_symlink.yml"
 
 - include: "symlink.yml"
 
 - include: "custom/after_symlink.yml"
 
+- include: "custom/after_symlink_once.yml"
 

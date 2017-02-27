@@ -1,2 +1,10 @@
 ---
 
+- name: SCRIPT deploy after_symlink
+  script: roles/deploy/tasks/custom/after_symlink.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
+  register: sometext
+
+- debug: 
+     msg: "{{sometext.stdout_lines}}"
+
+

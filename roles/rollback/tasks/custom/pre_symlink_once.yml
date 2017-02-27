@@ -1,13 +1,14 @@
 ---
 
-- name: SCRIPT rollback pre_symlink
-  script: roles/rollback/tasks/custom/pre_symlink.sh  "{{previous_release_path.stdout}}" "{{capians_deploy_to}}"
+- name: RUN_ONCE SCRIPT rollback pre_symlink
+  script: roles/rollback/tasks/custom/pre_symlink_once.sh  "{{previous_release_path.stdout}}" "{{capians_deploy_to}}"
+  run_once: yes
   register: sometext
   ignore_errors: yes
 
 - debug:
      msg: "{{sometext.stdout_lines}}"
-     
+
 - name: Delete release if it is brocken
   file:
      path: "{{previous_release_path.stdout}}"
@@ -16,4 +17,4 @@
 
 - name: Failing cause of errors
   command: /bin/false
-  when: sometext|failed  
+  when: sometext|failed   
