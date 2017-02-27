@@ -52,7 +52,7 @@ node {
 
     stage('Sending msg via Telegram') {
 
-  def buildUrl = env.BUILD_URL
+  def buildUrl = currentBuild.absoluteUrl
   def buildStatus = 'Success'
   
   def subject = """############################
