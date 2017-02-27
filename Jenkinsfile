@@ -76,7 +76,7 @@ Project URL: http://${git_branch}.${domain}
 
   def letter = (subject + details)
   
-  sh 'curl -s --max-time 10 -d "chat_id=${chat_id}&disable_web_page_preview=1&text=${letter}" https://api.telegram.org/bot${token}/sendMessage'
+  sh 'curl -s --max-time 10 -d \"chat_id=${chat_id}&disable_web_page_preview=1&text=${letter}\" https://api.telegram.org/bot${token}/sendMessage'
 
     }
 
