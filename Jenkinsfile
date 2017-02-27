@@ -55,7 +55,8 @@ node {
   def buildStatus = 'Success'
   def colorName = 'RED'
   def colorCode = '#FF0000'
-  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+					"""
   def summary = "${subject} (${env.BUILD_URL})"
   def action = action
   def email_error = env.capture
@@ -64,8 +65,14 @@ node {
       logfile=`echo ${JENKINS_HOME}/\$a/builds/${BUILD_NUMBER}/log`
       grep -i Started \$logfile | sed -e \"s|.*\\[0m|Deployed by: |g\" 
       """).trim()
-  def details = """<p>Build Action: ${action} </p> <p>${user_build} </p><p>Deploy Status: ${buildStatus}<p>Console: <a href='${env.BUILD_URL}/console'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p><p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check build running at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
+
+  def details = """Build Action: ${action} 
+${user_build} 
+Deploy Status: ${buildStatus}
+Console: ${env.BUILD_URL}/console 
+${env.JOB_NAME} [${env.BUILD_NUMBER}]
+STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]
+Check build running at ${env.BUILD_URL} ${env.JOB_NAME} [${env.BUILD_NUMBER}]"""
 
 build job: 'Telegram', parameters: [text(name: 'msg', value: subject + details)]
 
