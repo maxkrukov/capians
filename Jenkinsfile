@@ -69,7 +69,7 @@ ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 
   def details = """Build Action: ${action} 
 ${user_build}
-BUILD URL: ${BUILD_URL}/console
+BUILD URL: ${env.BUILD_URL}/console
 Project URL: http://${git_branch}.${domain}
 """ 
 
