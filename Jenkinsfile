@@ -58,7 +58,7 @@ ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
 
-  def summary = "${subject} (${env.BUILD_URL})"
+  def summary = "${env.BUILD_URL}"
   def action = action
   def email_error = env.capture
   def user_build =  sh(returnStdout: true, script:"""#!/bin/bash
@@ -69,7 +69,7 @@ ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 
   def details = """Build Action: ${action} 
 ${user_build}
-BUILD URL: ${env.JOB_URL}/${env.BUILD_NUMBER}/console
+BUILD URL: summary
 Project URL: http://${git_branch}.storage.agere.com.ua
 """ 
 
