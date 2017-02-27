@@ -14,5 +14,6 @@
      state: absent
   when: sometext|failed
 
-- command: /bin/false
+- name: Failing cause of errors
+  command: /bin/false
   when: sometext|failed  
