@@ -52,13 +52,16 @@ node {
 
     stage('Sending msg via Telegram') {
 
+  def buildUrl = env.BUILD_URL
   def buildStatus = 'Success'
+  
   def subject = """############################
 ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
 
   def action = action
+  
   def user_build =  sh(returnStdout: true, script:"""#!/bin/bash
       a=\$(echo '/${JOB_NAME}' | sed 's|/|/jobs/|g')
       logfile=`echo ${JENKINS_HOME}/\$a/builds/${BUILD_NUMBER}/log`
@@ -67,11 +70,13 @@ ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 
   def details = """Build Action: ${action} 
 ${user_build}
-BUILD URL: http://jenkins.itmk.com.ua/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console
-Project URL: http://${git_branch}.storage.agere.com.ua
+BUILD URL: ${buildUrl}/console
+Project URL: http://${git_branch}.${domain}
 """ 
 
-build job: 'Telegram', parameters: [text(name: 'msg', value: subject + details)]
+  def msg = subject + details
+  
+  sh 'curl -s --max-time 10 -d "chat_id=${chat_id}&disable_web_page_preview=1&text=${msg}" https://api.telegram.org/bot${token}/sendMessage'
 
     }
 
