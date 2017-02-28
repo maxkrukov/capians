@@ -31,6 +31,8 @@ node {
       writeFile file: 'roles/deploy/tasks/custom/after_symlink_once.sh', text: ('set -e; ' +  'set -o pipefail; ' + ' cd $1 ; ' + deploy_after_symlink_once)
       writeFile file: 'roles/rollback/tasks/custom/pre_symlink_once.sh', text: ('set -e; ' +  'set -o pipefail; ' + ' cd $1 ; ' + rollback_pre_symlink_once)
       writeFile file: 'roles/rollback/tasks/custom/after_symlink_once.sh', text: ('set -e; ' +  'set -o pipefail; ' + ' cd $1 ; ' + rollback_after_symlink_once)
+    
+      writeFile file: 'vars', text: vars
     }
 
     stage('Deploying...') {
@@ -46,7 +48,6 @@ node {
                 git_pass: [value: git_pass, hidden: true],
                 git_branch: git_branch,
                 keep_releases: keep_releases,
-                vars: 'empty'
             ]
     }
 
