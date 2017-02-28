@@ -1,5 +1,5 @@
 # capians
-Tool for deployment (deploy & rollback) via git (https)
+Tool for deployment (deploy & rollback) via git (https).
 
 ## About
 It is based on ansible with capistrano3 algorithm.
