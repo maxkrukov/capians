@@ -2,7 +2,11 @@ node {
     step([$class: 'WsCleanup'])
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
 	currentBuild.description = "Code Deployment"
-    
+
+////
+// Config part
+////    
+	try {  // Start try_catch
     stage('Loading configs...') {
         git branch: 'master', url: 'https://github.com/maxkrukov/capians.git' 
      
@@ -35,6 +39,9 @@ node {
       writeFile file: 'vars', text: vars
     }
 
+////
+// Deploy part
+///
     stage('Deploying...') {
         ansiblePlaybook colorized: false, 
             credentialsId: credsID, 
@@ -50,6 +57,10 @@ node {
                 keep_releases: keep_releases,
             ]
     }
+
+////
+// Massage part
+////
 
     stage('Sending msg via Telegram') {
 
@@ -81,6 +92,46 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 	done '''
 
     }
+
+////
+// End of script
+////
+
+
+	} catch (Exception err){
+
+				  def buildStatus = '!!!Fail!!!'
+
+  def subject = """############################
+${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+############################
+"""
+
+  def action = action
+
+  def user_build =  sh(returnStdout: true, script:"""#!/bin/bash
+      a=\$(echo '/${JOB_NAME}' | sed 's|/|/jobs/|g')
+      logfile=`echo ${JENKINS_HOME}/\$a/builds/${BUILD_NUMBER}/log`
+      grep -i Started \$logfile | sed -e \"s|.*\\[0m|Deployed by: |g\"
+      """).trim()
+
+  def details = """Build Action: ${action}
+${user_build}
+BUILD URL: ${env.BUILD_URL}console
+Project URL: http://${git_branch}.${domain}
+"""
+
+  env.MSG = (subject + details)
+
+sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
+   curl -s --max-time 10 -d "chat_id=${i}&disable_web_page_preview=1&text=${MSG}" https://api.telegram.org/bot${token}/sendMessage
+        done '''
+
+                                 
+                                    
+				String error = "${err}";
+				error 'Failed'
+	} // End try_catch
 
 }
 
