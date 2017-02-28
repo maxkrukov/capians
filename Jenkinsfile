@@ -66,8 +66,7 @@ node {
 
   def buildStatus = 'Success'
   
-  def subject = """############################
-${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+  def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
 
@@ -96,14 +95,13 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 ////
 // End of script
 ////
-
-
+// Catch part
+////
 	} catch (Exception err){
 
-				  def buildStatus = '!!!Fail!!!'
+	  def buildStatus = '==> Fail !'
 
-  def subject = """############################
-${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+  def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
 
@@ -126,10 +124,6 @@ Project URL: http://${git_branch}.${domain}
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
    curl -s --max-time 10 -d "chat_id=${i}&disable_web_page_preview=1&text=${MSG}" https://api.telegram.org/bot${token}/sendMessage
         done '''
-
-                                 
-                                    
-				String error = "${err}";
 				error 'Failed'
 	} // End try_catch
 
