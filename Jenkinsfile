@@ -23,7 +23,7 @@ node {
           - name: Running template !!! `echo $line | awk \'{print$1}\'` !!!
             template:
               src:   \\\"./tmp\\\"
-              dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'` \\\" "
+              dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'`\\\" "
                    done >> roles/deploy/tasks/custom/template.yml'''
       
       writeFile file: 'roles/deploy/tasks/custom/pre_symlink.sh', text: ('set -e; ' +  'set -o pipefail; ' + ' cd $1 ; ' + deploy_pre_symlink)
