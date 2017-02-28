@@ -23,7 +23,7 @@
    
 
     vars_files:
-        - "{{ vars | default('vars') }}"
+        - vars
   
     roles:
         - "{{ action | default('deploy') }}"
