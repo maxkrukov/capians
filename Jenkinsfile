@@ -4,7 +4,7 @@ node {
 	currentBuild.description = "Code Deployment"
     
     stage('Loading configs...') {
-        git branch: 'stable1.0', url: 'https://github.com/maxkrukov/capians.git' 
+        git branch: 'master', url: 'https://github.com/maxkrukov/capians.git' 
      
         writeFile file: 'hosts', text: hosts
 
