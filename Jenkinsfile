@@ -67,7 +67,7 @@ node {
    
     def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l max 172.17.0.1 \"
        ## == script
-       sudo cd  ${deploy_to}/current \\
+       sudo cd  ${deploy_to}/current
        sudo ./vendor/bin/phpunit --bootstrap \\   
               module/Agere/CheckoutBooking/test/unit/Bootstrap.php \\   
               module/Agere/CheckoutBooking/test/unit/Service/CheckoutServiceTest.php 2>&1 || echo
