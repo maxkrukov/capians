@@ -63,9 +63,9 @@ node {
 ////
        stage('Testing...') {
 
-   sshagent(['15615bc9-d7d9-42b6-865c-0e2713ec839b']) {
+   sshagent([test_creds]) {
    
-    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l max 172.17.0.1 "
+    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip} "
        cd  ${deploy_to}/current
          ${test_script}
            " ''').trim()
@@ -117,6 +117,9 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 // Catch part
 ////
 	} catch (Exception err){
+
+
+    println(testing)
 
 	  def buildStatus = '==> Fail !'
 
