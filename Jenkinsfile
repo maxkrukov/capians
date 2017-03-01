@@ -68,11 +68,12 @@ node {
        cd  ${deploy_to}/current
          ${test_script} 
            " 2>&1 || echo ''').trim() 
-   }
-
 
    println(testing)
    writeFile file: '${env.JOB_NAME}_${env.BUILD_NUMBER}.txt', text: testing
+
+   }
+
 
        }
 
