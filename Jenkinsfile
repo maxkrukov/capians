@@ -65,10 +65,10 @@ node {
 
    sshagent([test_creds]) {
    
-    env.testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip} "
+    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip}  "
        cd  ${deploy_to}/current
-         ${test_script}
-           " ''').text() 
+         ${test_script} 
+           " 2>&1 || echo ''').trim() 
 
      println(testing)
    }
