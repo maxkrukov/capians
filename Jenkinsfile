@@ -65,14 +65,9 @@ node {
 
    sshagent(['15615bc9-d7d9-42b6-865c-0e2713ec839b']) {
    
-    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l max 172.17.0.1 \\\"
-       ## == script
-       sudo cd  ${deploy_to}/current
-       sudo ./vendor/bin/phpunit --bootstrap \\   
-              module/Agere/CheckoutBooking/test/unit/Bootstrap.php \\   
-              module/Agere/CheckoutBooking/test/unit/Service/CheckoutServiceTest.php 2>&1 || echo
-       ## == end script
-     \\\"  ''').trim()
+    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l max 172.17.0.1 "
+       sudo cd  ${deploy_to}/current && sudo ./vendor/bin/phpunit --bootstrap module/Agere/CheckoutBooking/test/unit/Bootstrap.php module/Agere/CheckoutBooking/test/unit/Service/CheckoutServiceTest.php 2>&1 || echo
+           " ''').trim()
 
      println(testing)
    }
