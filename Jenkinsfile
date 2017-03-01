@@ -65,12 +65,10 @@ node {
 
    sshagent([test_creds]) {
    
-catchError {
-    def testing = sh(returnStdout: true, returnStatus: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip} "
+    env.testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip} "
        cd  ${deploy_to}/current
          ${test_script}
-           " ''').trim() 
-}
+           " ''').text() 
 
      println(testing)
    }
