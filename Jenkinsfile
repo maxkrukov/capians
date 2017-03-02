@@ -67,11 +67,11 @@ node {
     def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip}  "
        cd  ${deploy_to}/current
          ${test_script} 
-           " 2>&1 || echo ''').trim() 
+           " 2>&1 || echo "That_was_failed" ''').trim() 
 
    println(testing)
    writeFile file: "result_${BUILD_NUMBER}.txt", text: testing
-
+   sh('cat result_${BUILD_NUMBER}.txt | egrep "That_was_failed$" ')
    }
 
 
