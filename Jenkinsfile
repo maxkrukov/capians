@@ -71,7 +71,7 @@ node {
 
    println(testing)
    writeFile file: "result_${BUILD_NUMBER}.txt", text: testing
-   sh('cat result_${BUILD_NUMBER}.txt | egrep "That_was_failed$" ')
+   sh('if (cat result_${BUILD_NUMBER}.txt | egrep "That_was_failed$") ; then false ; fi ')
    }
 
 
