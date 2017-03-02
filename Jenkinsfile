@@ -65,6 +65,7 @@ node {
 
    sshagent([test_creds]) {
     def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip}  "
+      set -xe 
        cd  ${deploy_to}/current
          ${test_script} 
            " 2>&1 || echo "That_was_failed" ''').trim() 
