@@ -106,8 +106,8 @@ Project URL: http://${git_branch}.${domain}
   env.MSG = (subject + details)
   
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
-   curl  -s --max-time 10 -F chat_id=${i} -F document=@result.txt  -F "caption=${MSG}"  https://api.telegram.org/bot${token}/sendDocument 
    curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F document=@result.txt  -F caption="${buildStatus}: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument 
 	done '''
 
     }
@@ -143,8 +143,8 @@ Project URL: http://${git_branch}.${domain}
   env.MSG = (subject + details)
 
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
-     curl  -s --max-time 10 -F chat_id=${i} -F document=@result.txt  -F "caption=${MSG}"  https://api.telegram.org/bot${token}/sendDocument 
-     curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F document=@result.txt  -F caption="${buildStatus}: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument
         done '''
 				error 'Failed'
 	} // End try_catch
