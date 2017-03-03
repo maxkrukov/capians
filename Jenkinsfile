@@ -59,6 +59,26 @@ node {
     }
 
 ////
+// Testing
+////
+       stage('Testing...') {
+
+   sshagent([test_creds]) {
+    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip}  "
+      set -xe 
+       cd  ${deploy_to}/current
+         ${test_script} 
+           " 2>&1 || echo "That_was_failed" ''').trim() 
+
+   println(testing)
+   writeFile file: "result_${BUILD_NUMBER}.txt", text: testing
+   sh('if (cat result_${BUILD_NUMBER}.txt | egrep "That_was_failed$") ; then false ; fi ')
+   }
+
+
+       }
+
+////
 // Massage part
 ////
 
@@ -87,7 +107,8 @@ Project URL: http://${git_branch}.${domain}
   env.MSG = (subject + details)
   
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
-   curl -s --max-time 10 -d "chat_id=${i}&disable_web_page_preview=1&text=${MSG}" https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F document=@result_${BUILD_NUMBER}.txt  -F "caption=Job ${JOB_NAME} [${BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument 
 	done '''
 
     }
@@ -98,6 +119,7 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 // Catch part
 ////
 	} catch (Exception err){
+
 
 	  def buildStatus = '==> Fail !'
 
@@ -122,7 +144,8 @@ Project URL: http://${git_branch}.${domain}
   env.MSG = (subject + details)
 
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
-   curl -s --max-time 10 -d "chat_id=${i}&disable_web_page_preview=1&text=${MSG}" https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
+   curl  -s --max-time 10 -F chat_id=${i} -F document=@result_${BUILD_NUMBER}.txt  -F "caption=Job ${JOB_NAME} [${BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument
         done '''
 				error 'Failed'
 	} // End try_catch
