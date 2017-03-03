@@ -4,10 +4,10 @@
 
 deploy_to: "/tmp/deploy"
 
-git_repo: 
-git_user: 
-git_pass: 
-git_branch: test
+git_repo: https://github.com/maxkrukov/capians.git 
+git_user: ""
+git_pass: ""
+git_branch: master
 
 keep_releases: 5
 
