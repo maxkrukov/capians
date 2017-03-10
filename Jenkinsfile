@@ -110,7 +110,9 @@ Testing: $testing
   env.MSG = (subject + details)
   
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
+     if [ -f result_${BUILD_NUMBER}.txt ] ; then
    curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
+     fi
    curl  -s --max-time 10 -F chat_id=${i} -F document=@result_${BUILD_NUMBER}.txt  -F "caption=Job ${JOB_NAME} [${BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument || echo   
 	done '''
 
@@ -149,7 +151,9 @@ Testing: $testing
 
 sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
    curl  -s --max-time 10 -F chat_id=${i} -F disable_web_page_preview=1 -F "text=${MSG}"  https://api.telegram.org/bot${token}/sendMessage
-   curl  -s --max-time 10 -F chat_id=${i} -F document=@result_${BUILD_NUMBER}.txt  -F "caption=Job ${JOB_NAME} [${BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument || echo 
+     if [ -f result_${BUILD_NUMBER}.txt ] ; then
+   curl  -s --max-time 10 -F chat_id=${i} -F document=@result_${BUILD_NUMBER}.txt  -F "caption=Job ${JOB_NAME} [${BUILD_NUMBER}]"  https://api.telegram.org/bot${token}/sendDocument
+     fi 
         done '''
 				error 'Failed'
 	} // End try_catch
