@@ -63,6 +63,8 @@ node {
 ////
        stage('Testing...') {
 
+if( testing=="true" ){
+
    sshagent([test_creds]) {
     def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip}  "
       set -xe 
@@ -74,7 +76,7 @@ node {
    writeFile file: "result_${BUILD_NUMBER}.txt", text: testing
    sh('if (cat result_${BUILD_NUMBER}.txt | egrep "That_was_failed$") ; then false ; fi ')
    }
-
+} else { println('Skipping...') }
 
        }
 
