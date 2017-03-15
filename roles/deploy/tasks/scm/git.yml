@@ -1,7 +1,9 @@
 ---
 
 - name: GIT | Check git repository
-  shell: "set -x; git ls-remote --heads https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}"
+  shell: "git ls-remote --heads https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}"
+  args:
+    executable: /bin/bash -xv
   run_once: true
   register: git_heads
 
