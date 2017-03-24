@@ -97,6 +97,8 @@ if( testing=="true" ){
   } else {
 	def projectUrl = "http://${git_branch}.${domain}"
   }
+	    println(projectUrl)
+	    
   def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
