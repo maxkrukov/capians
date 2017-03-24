@@ -3,6 +3,11 @@ node {
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
 	currentBuild.description = "Code Deployment"
 
+
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: credsID ,
+                    usernameVariable: 'test_user', passwordVariable: 'test_pass']]) {
+	
+	
 ////
 // Config part
 ////    
@@ -65,8 +70,8 @@ node {
 
 if( testing=="true" ){
 
-   sshagent([test_creds]) {
-    def testing = sh(returnStdout: true, script:'''ssh -o StrictHostKeyChecking=no -l ${test_user} ${test_ip}  "
+   sshagent(credentials: [test_creds], ignoreMissing: true) {
+	   def testing = sh(returnStdout: true, script:'''sshpass -p ${test_pass} ssh -o StrictHostKeyChecking=no -p ${test_port} -l ${test_user} ${test_ip}  "
       set -xe 
        cd  ${deploy_to}/current
          ${test_script} 
@@ -158,5 +163,6 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 				error 'Failed'
 	} // End try_catch
 
+  }
 }
 
