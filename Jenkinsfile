@@ -92,7 +92,7 @@ if( testing=="true" ){
     stage('Sending msg via Telegram') {
 
   def buildStatus = 'Success'
-  if( sh"echo ${domain} | grep '^http'" ){
+  if( sh script: "echo ${domain} | grep '^http' " ){
 	def projectUrl = "${domain}"
   } else {
 	def projectUrl = "http://${git_branch}.${domain}"
