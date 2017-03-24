@@ -93,10 +93,8 @@ if( testing=="true" ){
 
   def buildStatus = 'Success'
 	    
-	def Url = domain =~ /^http.*/
-	    println(Url)
-  if( Url ){
-	def projectUrl = Url
+  if (domain ==~ ^http.*){
+	def projectUrl = domain
   } else {
 	def projectUrl = "http://${git_branch}.${domain}"
   }
