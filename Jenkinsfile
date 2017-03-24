@@ -94,9 +94,9 @@ if( testing=="true" ){
   def buildStatus = 'Success'
 	    
   if (domain ==~ /^http.*/){
-	def projectUrl = "${domain}"
+	env.projectUrl = "${domain}"
   } else {
-	def projectUrl = "http://${git_branch}.${domain}"
+	env.projectUrl = "http://${git_branch}.${domain}"
   }
 	
 	    
@@ -115,7 +115,7 @@ if( testing=="true" ){
   def details = """Build Action: ${action} 
 ${user_build}
 BUILD URL: ${env.BUILD_URL}console
-Project URL: ${projectUrl}
+Project URL: ${env.projectUrl}
 Testing: $testing
 """ 
 
@@ -155,7 +155,7 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
   def details = """Build Action: ${action}
 ${user_build}
 BUILD URL: ${env.BUILD_URL}console
-Project URL: ${projectUrl}
+Project URL: ${env.projectUrl}
 Testing: $testing
 """
 
