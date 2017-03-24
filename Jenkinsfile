@@ -92,8 +92,11 @@ if( testing=="true" ){
     stage('Sending msg via Telegram') {
 
   def buildStatus = 'Success'
-  def projectUrl = "http://${git_branch}.${domain}"
-	    
+  if( domain=~"^http.*" ){
+     	def projectUrl = domain
+  } else {
+	def projectUrl = "http://${git_branch}.${domain}"
+  }
   def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
