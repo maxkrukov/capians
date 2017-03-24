@@ -92,7 +92,8 @@ if( testing=="true" ){
     stage('Sending msg via Telegram') {
 
   def buildStatus = 'Success'
-  
+  def projectUrl = "http://${git_branch}.${domain}"
+	    
   def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
 """
@@ -108,7 +109,7 @@ if( testing=="true" ){
   def details = """Build Action: ${action} 
 ${user_build}
 BUILD URL: ${env.BUILD_URL}console
-Project URL: http://${git_branch}.${domain}
+Project URL: ${projectUrl}
 Testing: $testing
 """ 
 
@@ -148,7 +149,7 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
   def details = """Build Action: ${action}
 ${user_build}
 BUILD URL: ${env.BUILD_URL}console
-Project URL: http://${git_branch}.${domain}
+Project URL: ${projectUrl}
 Testing: $testing
 """
 
