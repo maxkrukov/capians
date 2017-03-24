@@ -70,7 +70,7 @@ node {
 
 if( testing=="true" ){
 
-   sshagent(credentials: [test_creds], ignoreMissing: true) {
+   sshagent(credentials: [""], ignoreMissing: true) {
 	   def testing = sh(returnStdout: true, script:'''sshpass -p ${test_pass} ssh -o StrictHostKeyChecking=no -p ${test_port} -l ${test_user} ${test_ip}  "
       set -xe 
        cd  ${deploy_to}/current
