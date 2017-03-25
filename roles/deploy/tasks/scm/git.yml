@@ -1,7 +1,7 @@
 ---
 
 - name: GIT | Check git repository
-  shell: "/bin/bash -c 'set -x ; git ls-remote --heads https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}' 2>&1 " 
+  shell: "/bin/bash -c 'set -x ; git ls-remote --heads https://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}' 2>&1 | sed 's/{{capians_git_pass}}/XXXXXXXXXX/'" 
   run_once: true
   register: git_heads
 
