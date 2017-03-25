@@ -1,7 +1,7 @@
 ---
 
 - name: RUN_ONCE SCRIPT deploy after_symlink
-  script: roles/deploy/tasks/custom/after_symlink_once.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}"
+  script: roles/deploy/tasks/custom/after_symlink_once.sh  "{{capians_release_path.stdout}}" "{{capians_deploy_to}}" 2>&1
   run_once: yes
   register: sometext
 
