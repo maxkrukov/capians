@@ -7,7 +7,11 @@ node {
   withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: credsID ,
                     usernameVariable: 'test_user', passwordVariable: 'test_pass']]) {
 	
-	
+  if (domain ==~ /^http.*/){
+	env.projectUrl = "${domain}"
+  } else {
+	env.projectUrl = "http://${git_branch}.${domain}"
+  }
 ////
 // Config part
 ////    
@@ -92,13 +96,6 @@ if( testing=="true" ){
     stage('Sending msg via Telegram') {
 
   def buildStatus = 'Success'
-	    
-  if (domain ==~ /^http.*/){
-	env.projectUrl = "${domain}"
-  } else {
-	env.projectUrl = "http://${git_branch}.${domain}"
-  }
-	
 	    
   def subject = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
 ############################
