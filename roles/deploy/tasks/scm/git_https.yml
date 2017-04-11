@@ -1,15 +1,21 @@
 ---
 
-- name: GIT | Check git repository
-  shell: "
+- name: GIT | REPO url
+  shell:  "
          gituname='{{capians_git_user}}';
          if [ ! -z $gituname ]; then
-          /bin/bash -c 'set -x ;
-          git ls-remote --heads {{capians_git_method}}://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}' 2>&1 | sed 's/{{capians_git_pass}}/XXXXXXXXXX/';
+          echo '{{capians_git_method}}://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}' ;
          else
-          set -x ;
-          git ls-remote --heads {{capians_git_method}}://{{capians_git_repo}} 2>&1 ;
+          echo '{{capians_git_method}}://{{capians_git_repo}}' ;
          fi "
+  run_once: true
+  register: git_url
+
+- name: GIT | Check git repository
+  shell: "
+          /bin/bash -c 'set -x ;
+          git ls-remote --heads {{git_url.stdout}}' 2>&1 | sed 's/{{capians_git_pass}}/XXXXXXXXXX/'
+          " 
   run_once: true
   register: git_heads
 
@@ -20,7 +26,7 @@
   
 - name: GIT | Clone/update repo 
   git:
-    repo: "{{capians_git_method}}://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}"
+    repo: "{{git_url.stdout}}"
     bare: yes
     dest: "{{ capians_repo_path }}"
     update: yes
@@ -49,7 +55,7 @@
     path: "{{ capians_repo_path }}"
   when: result1|failed or result2|failed
 - git:
-    repo: "{{capians_git_method}}://{{capians_git_user}}:{{capians_git_pass}}@{{capians_git_repo}}"
+    repo: "{{git_url.stdout}}"
     bare: yes
     dest: "{{ capians_repo_path }}"
     update: yes 
