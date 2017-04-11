@@ -64,6 +64,7 @@ node {
                 git_pass: [value: git_pass, hidden: true],
                 git_branch: git_branch,
                 keep_releases: keep_releases,
+		git_key: git_key
             ]
     }
 
