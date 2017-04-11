@@ -58,6 +58,7 @@ node {
             sudo: true, 
             extraVars: [
                 action: action,
+		scm: https,
                 deploy_to: deploy_to,
                 git_repo: git_repo,
                 git_user: git_user,
