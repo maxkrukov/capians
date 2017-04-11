@@ -17,7 +17,7 @@
     state: directory
     path: "{{ capians_release_path.stdout }}"
 
-- include: "scm/{{ capians_scm }}.yml"
+- include: "scm/{{ capians_scm }}_{{capians_git_method}}.yml"
 
 - name: Copy release version into REVISION file in release path
   shell: echo "{{ revision.stdout }}" > "{{ capians_release_path.stdout }}/REVISION"

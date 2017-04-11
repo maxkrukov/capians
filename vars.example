@@ -1,15 +1,18 @@
 ---
 
-# Use git https only!!!
-
+scm: git
 deploy_to: "/tmp/deploy"
 
-git_repo: https://github.com/maxkrukov/capians.git 
-git_user: ""
-git_pass: ""
+#git_method: https
+#git_repo: https://github.com/maxkrukov/capians.git 
+#git_user: ""
+#git_pass: ""
+#git_branch: master
+
+git_method: ssh
+git_repo: git@github.com:maxkrukov/capians.git
 git_branch: master
+git_key: '/home/mkryukov/.ssh/vit_rsa'
 
 keep_releases: 5
-
-
 
