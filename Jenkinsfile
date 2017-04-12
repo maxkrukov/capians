@@ -50,10 +50,8 @@ node {
 
 ////
 // Deploy part
-///
+/// 
     stage('Deploying...') {
-	    withCredentials([string(credentialsId: git_key, variable: 'ktest')]) {
-		   writeFile file: 'key', text: ktext 
         ansiblePlaybook colorized: false, 
             credentialsId: credsID, 
             playbook: 'deploy.yml', 
@@ -67,9 +65,8 @@ node {
                 git_pass: [value: git_pass, hidden: true],
                 git_branch: git_branch,
                 keep_releases: keep_releases,
-		git_key: 'key'
+		git_key: git_key
             ]
-	    }
     }
 
 ////
