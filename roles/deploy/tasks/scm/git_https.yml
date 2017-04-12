@@ -15,7 +15,7 @@
   shell: "
           /bin/bash -c 'set -x ;
           git ls-remote --heads {{git_url.stdout}}' 2>&1 | sed 
-                 -e 's|\:\w.*@|:XXXXXX@|g'
+                 -e 's|:.*@|:XXXXXX@|g'
           " 
   run_once: true
   register: git_heads
