@@ -5,6 +5,7 @@
     become: true
     any_errors_fatal: true
     max_fail_percentage: 0
+    gather_facts: false
 
     vars:
        capians_deploy_to: "{{ deploy_to }}"
