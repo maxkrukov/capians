@@ -34,6 +34,6 @@ ansible-playbook deploy.yml
 ```
 ### To rollback:
 ```
-ansible-playbook deploy.yml -e "action=rollback"
+ansible-playbook deploy.yml -e "act=rollback"
 ```
 
