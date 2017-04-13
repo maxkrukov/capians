@@ -57,7 +57,7 @@ node {
             playbook: 'deploy.yml', 
             sudo: true, 
             extraVars: [
-                action: action,
+                act: action,
 		git_method: git_method,
                 deploy_to: deploy_to,
                 git_repo: git_repo,
