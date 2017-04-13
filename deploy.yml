@@ -21,7 +21,6 @@
        capians_scm: "{{ scm | default('git') }}"
        capians_git_method: "{{ git_method | default('https') }}"
     
-    max_fail_percentage: 0
     
     vars_files:
         - vars
