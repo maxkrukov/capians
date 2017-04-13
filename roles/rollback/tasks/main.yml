@@ -3,7 +3,7 @@
 - action: ping
 
 - setup:
-  filter: ansible_*
+      filter: ansible_*
 
 - name: Get previous release path
   shell: "echo {{ capians_releases_path }}/$(ls -1t {{ capians_releases_path }} | head -2 | tail -1)"
