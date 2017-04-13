@@ -3,6 +3,7 @@
   - name: Deploying code via capians!
     hosts:  hosts
     become: true
+    any_errors_fatal: true
 
     vars:
        capians_deploy_to: "{{ deploy_to }}"
