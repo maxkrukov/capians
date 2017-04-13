@@ -4,7 +4,6 @@
     hosts:  hosts
     become: true
     any_errors_fatal: true
-    serial: 1
 
     vars:
        capians_deploy_to: "{{ deploy_to }}"
