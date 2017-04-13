@@ -26,5 +26,5 @@
         - vars
   
     roles:
-        - "{{ action | default('deploy') }}"
+        - "{{ act | default('deploy') }}"
 
