@@ -2,6 +2,7 @@
 
   - name: Deploying code via capians!
     hosts:  hosts
+    gather_facts: false
     become: true
 
     vars:
