@@ -4,6 +4,7 @@
     hosts:  hosts
     become: true
     any_errors_fatal: true
+    max_fail_percentage: 0
 
     vars:
        capians_deploy_to: "{{ deploy_to }}"
