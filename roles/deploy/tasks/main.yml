@@ -2,6 +2,9 @@
 
 - action: ping
 
+- setup:
+       filter: ansible_*
+
 - include: "setup.yml"
 
 - include: "update-code.yml"
