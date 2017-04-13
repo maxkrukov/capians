@@ -11,7 +11,7 @@
     bare: yes
     dest: "{{ capians_repo_path }}"
     update: yes
-    ssh_opts: "-o StrictHostKeyChecking=no -i {{deploy_to}}/key"
+    ssh_opts: "-o ControlMaster=auto -o ControlPersist=60s -o ForwardAgent=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i {{deploy_to}}/key"
   register: result
   ignore_errors: True
   no_log: True
@@ -38,7 +38,7 @@
     bare: yes
     dest: "{{ capians_repo_path }}"
     update: yes
-    ssh_opts: "-o StrictHostKeyChecking=no -i {{deploy_to}}/key"
+    ssh_opts: "-o ControlMaster=auto -o ControlPersist=60s -o ForwardAgent=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i {{deploy_to}}/key"
   when: result|failed
   
 - name: GIT | Create release`s files
