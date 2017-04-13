@@ -1,12 +1,12 @@
 ---
 
- - name: check connectivity to hosts (Dummy task)
-   shell: echo " {{ hostvars[item]['ansible_hostname'] }}"
-   with_items: groups['hosts']
-   register: cmd_output
+- name: check connectivity to hosts (Dummy task)
+  shell: echo " {{ hostvars[item]['ansible_hostname'] }}"
+  with_items: groups['hosts']
+  register: cmd_output
 
- - name: debug ...
-   debug: var=cmd_output
+- name: debug ...
+  debug: var=cmd_output
 
 - include: "setup.yml"
 
