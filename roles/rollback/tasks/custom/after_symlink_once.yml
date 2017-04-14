@@ -7,3 +7,4 @@
 
 - debug:
      msg: "{{sometext.stdout_lines}}"
+  run_once: yes
