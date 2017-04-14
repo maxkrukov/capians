@@ -35,10 +35,10 @@ node {
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'`\\\" "
                    done >> roles/deploy/tasks/custom/template.yml'''
       
-      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + deploy_pre_symlink)
-      writeFile file: 'roles/deploy/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + deploy_after_symlink)
-      writeFile file: 'roles/rollback/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + rollback_pre_symlink)
-      writeFile file: 'roles/rollback/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + rollback_after_symlink)
+      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + deploy_pre_symlink)
+      writeFile file: 'roles/deploy/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + deploy_after_symlink)
+      writeFile file: 'roles/rollback/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + rollback_pre_symlink)
+      writeFile file: 'roles/rollback/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + rollback_after_symlink)
     
       writeFile file: 'roles/deploy/tasks/custom/pre_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + deploy_pre_symlink_once)
       writeFile file: 'roles/deploy/tasks/custom/after_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + deploy_after_symlink_once)
