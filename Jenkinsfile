@@ -35,15 +35,15 @@ node {
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'`\\\" "
                    done >> roles/deploy/tasks/custom/template.yml'''
       
-      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + deploy_pre_symlink)
-      writeFile file: 'roles/deploy/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + deploy_after_symlink)
-      writeFile file: 'roles/rollback/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + rollback_pre_symlink)
-      writeFile file: 'roles/rollback/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; hostname; ' + rollback_after_symlink)
+      writeFile file: 'roles/deploy/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + deploy_pre_symlink)
+      writeFile file: 'roles/deploy/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + deploy_after_symlink)
+      writeFile file: 'roles/rollback/tasks/custom/pre_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + rollback_pre_symlink)
+      writeFile file: 'roles/rollback/tasks/custom/after_symlink.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + rollback_after_symlink)
     
-      writeFile file: 'roles/deploy/tasks/custom/pre_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + deploy_pre_symlink_once)
-      writeFile file: 'roles/deploy/tasks/custom/after_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + deploy_after_symlink_once)
-      writeFile file: 'roles/rollback/tasks/custom/pre_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + rollback_pre_symlink_once)
-      writeFile file: 'roles/rollback/tasks/custom/after_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'set -ex; ' + rollback_after_symlink_once)
+      writeFile file: 'roles/deploy/tasks/custom/pre_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + deploy_pre_symlink_once)
+      writeFile file: 'roles/deploy/tasks/custom/after_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + deploy_after_symlink_once)
+      writeFile file: 'roles/rollback/tasks/custom/pre_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + rollback_pre_symlink_once)
+      writeFile file: 'roles/rollback/tasks/custom/after_symlink_once.sh', text: ('set -o pipefail; ' +  ' cd $1 ; ' + 'hostname; set -ex; ' + rollback_after_symlink_once)
     
       writeFile file: 'vars', text: vars
     }
@@ -78,7 +78,7 @@ if( testing=="true" ){
 
    sshagent(credentials: [""], ignoreMissing: true) {
 	   def testing = sh(returnStdout: true, script:'''sshpass -p ${test_pass} ssh -o StrictHostKeyChecking=no -p ${test_port} -l ${test_user} ${test_ip}  "
-      set -xe 
+      hostname ; set -xe 
        cd  ${deploy_to}/current
          ${test_script} 
            " 2>&1 || echo "That_was_failed" ''').trim() 
