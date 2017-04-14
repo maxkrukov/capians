@@ -8,6 +8,7 @@
 
 - debug:
      msg: "{{sometext.stdout_lines}}"
+  run_once: yes
 
 - name: Delete release if it is brocken
   file:
