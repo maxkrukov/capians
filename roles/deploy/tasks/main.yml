@@ -1,10 +1,7 @@
 ---
 
 - name: Pinging hosts
-  shell: "hostname ;
-          curl {{ansible_ssh_host}}:22 2>/dev/null"
-  delegate_to: 127.0.0.1
-  delegate_facts: True
+  local_action: command curl {{ansible_ssh_host}}:22 2>/dev/null
   ignore_errors: true
   register: ping_status
  
