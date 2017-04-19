@@ -4,7 +4,7 @@
   register: ping_status
  
 - debug:
-    msg: "{{ping_status.stdout}}"
+    var: ping_status
 
 - setup:
        filter: ansible_*
