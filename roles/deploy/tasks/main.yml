@@ -5,6 +5,7 @@
  
 - debug:
     var: ping_status
+    msg: "{{ping_status.ping}}"
 
 - setup:
        filter: ansible_*
