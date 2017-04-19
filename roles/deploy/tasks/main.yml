@@ -10,7 +10,7 @@
   ignore_errors: true
 
 - name: Are all hosts present?
-  shell: cat /tmp/deploy.tmp | grep  'false'
+  shell: /bin/bash /tmp/deploy.tmp
   delegate_to: 127.0.0.1
 
 - setup:
