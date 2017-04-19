@@ -19,10 +19,6 @@
          echo 'false' >> /tmp/deploy.tmp
   delegate_to: 127.0.0.1
   ignore_errors: true
-  register: dd
-  
-- debug: 
-     var: dd
 
 - name: Are all hosts present?
   shell: /bin/bash /tmp/deploy.tmp
