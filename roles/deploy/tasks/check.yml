@@ -24,7 +24,6 @@
          "
   delegate_to: 127.0.0.1
   ignore_errors: true
-  register: errs
   
 - local_action: command cat /tmp/check.tmp
   register: errs
