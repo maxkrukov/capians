@@ -1,11 +1,12 @@
 ---
 
-- action: ping
+- Pinging hosts
+  raw: hostname
   register: ping_status
   ignore_errors: true
  
 - debug:
-    msg: "{{ping_status.ping}}"
+    msg: "{{ping_status.stdout}"
 
 - setup:
        filter: ansible_*
