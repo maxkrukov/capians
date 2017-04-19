@@ -5,7 +5,7 @@
      var: hostvars[inventory_hostname]
 
 - name: Pinging hosts
-  local_action: nmap -p 22 {{inventory_hostname}}
+  local_action: command nmap -p 22 {{inventory_hostname}}
   ignore_errors: true
   register: ping_status
  
