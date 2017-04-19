@@ -13,9 +13,9 @@
   delegate_to: 127.0.0.1
      
 - name: Pinging hosts
-  shell: nmap -p 22 {{inventory_hostname}} && exit 0 ||
-         nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}}  && exit 0 ||
-         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0 ||
+  shell: nmap -p 22 {{inventory_hostname}} | grep open && exit 0 ||
+         nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} | grep open && exit 0 ||
+         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} | grep open && exit 0 ||
          echo 'false' >> /tmp/deploy.tmp
   delegate_to: 127.0.0.1
   ignore_errors: true
