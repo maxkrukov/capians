@@ -4,10 +4,11 @@
      state: absent
   run_once: true
   delegate_to: 127.0.0.1
+  ignore_errors: true
    
 - file: 
      path: /tmp/deploy.tmp
-     state: file
+     state: touch
   run_once: true
   delegate_to: 127.0.0.1
      
