@@ -33,4 +33,4 @@
 
 - name: Are all hosts present?
   shell: /bin/bash /tmp/deploy.tmp
-delegate_to: 127.0.0.1
+  delegate_to: 127.0.0.1
