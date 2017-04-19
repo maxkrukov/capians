@@ -1,7 +1,7 @@
 ---
 
 - name: Pinging hosts
-  command: /usr/bin/take_out_of_pool {{ inventory_hostname }}
+  command: "curl {{ansible_host}}:{{ansible_port}}"
   delegate_to: 127.0.0.1
  
 - debug:
