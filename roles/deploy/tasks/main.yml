@@ -2,10 +2,17 @@
 - file: 
      path: /tmp/deploy.tmp
      state: absent
-
+     run_once: true
+     delegate_to: 127.0.0.1
+   
+- file: 
+     path: /tmp/deploy.tmp
+     state: present
+     run_once: true
+     delegate_to: 127.0.0.1
+     
 - name: Pinging hosts
-  shell: rm -f /tmp/deploy.tmp ; touch /tmp/deploy.tmp ;
-         nmap -p 22 {{inventory_hostname}} && exit 0 ||
+  shell: nmap -p 22 {{inventory_hostname}} && exit 0 ||
          nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}}  && exit 0 ||
          nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0 ||
          echo 'false' >> /tmp/deploy.tmp
