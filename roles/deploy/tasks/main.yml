@@ -2,14 +2,14 @@
 - file: 
      path: /tmp/deploy.tmp
      state: absent
-     run_once: true
-     delegate_to: 127.0.0.1
+  run_once: true
+  delegate_to: 127.0.0.1
    
 - file: 
      path: /tmp/deploy.tmp
      state: present
-     run_once: true
-     delegate_to: 127.0.0.1
+  run_once: true
+  delegate_to: 127.0.0.1
      
 - name: Pinging hosts
   shell: nmap -p 22 {{inventory_hostname}} && exit 0 ||
