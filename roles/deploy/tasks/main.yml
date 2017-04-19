@@ -1,7 +1,7 @@
 ---
 
 - name: Pinging hosts
-  command: "curl {{ansible_host}}:{{ansible_port}}"
+  command: "curl {{ansible_ssh_host}}:{{ansibl_ssh_port}}"
   delegate_to: 127.0.0.1
   ignore_errors: true
   register: ping_status
