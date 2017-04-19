@@ -1,7 +1,7 @@
 ---
 
 - debug:
-     var: hostvars[inventory_hostname]
+     msg: "{{hostvars[inventory_hostname].groups.hosts}}"
 
 - name: Pinging hosts
   local_action: command curl {{ansible_ssh_host}}:22 2>/dev/null
