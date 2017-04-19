@@ -1,22 +1,25 @@
 ---
    
 - file: 
-     path: /tmp/deploy.tmp
+     path: /tmp/check.tmp
      state: absent
   run_once: true
   delegate_to: 127.0.0.1
   ignore_errors: true
    
 - file: 
-     path: /tmp/deploy.tmp
+     path: /tmp/check.tmp
      state: touch
   run_once: true
   delegate_to: 127.0.0.1
      
 - name: Pinging ssh protocol
-  shell: "nmap -p 22 {{inventory_hostname}} | grep open && exit 0 ||
-         nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} | grep open && exit 0 ||
-         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} | grep open && exit 0 ||
+  shell: "nmap -p 22 {{inventory_hostname}} 2>/dev/null | grep -q open && exit 0 ||
+         nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} 2>/dev/null 
+                           | grep -q open && exit 0 ||
+         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} 
+                 {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} 2>/dev/null 
+                           | grep -q open && exit 0 ||
          echo 'false {{inventory_hostname}}' | tee -a /tmp/deploy.tmp
          "
   delegate_to: 127.0.0.1
@@ -29,9 +32,9 @@
   delegate_to: 127.0.0.1
 
 - name: Are all hosts present?
-  shell: /bin/bash /tmp/deploy.tmp
+  shell: /bin/bash /tmp/check.tmp
   delegate_to: 127.0.0.1
-  
+  no_log: True
   
 # Ckeck packages
 - setup:
