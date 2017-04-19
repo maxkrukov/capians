@@ -1,19 +1,17 @@
 ---
 
-- debug:
-     #msg: "{{hostvars[inventory_hostname].groups.hosts}}"
-     var: hostvars[inventory_hostname]
-
 - name: Pinging hosts
-  shell: set +e ;  nmap -p 22 {{inventory_hostname}} && exit 0 ||
+  shell: rm -f /tmp/deploy.tmp
+         set +e ;  nmap -p 22 {{inventory_hostname}} && exit 0 ||
          nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0 ||
          nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0                      
+         >> /tmp/deploy.tmp
   delegate_to: 127.0.0.1
   ignore_errors: true
-  register: ping_status
- 
-- debug:
-    var: ping_status
+
+- name: Are all hosts present?
+  shell: cat /tmp/deploy.tmp | grep -q '22/tcp closed'
+  delegate_to: 127.0.0.1
 
 - setup:
        filter: ansible_*
