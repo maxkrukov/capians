@@ -27,6 +27,9 @@
   
   
 # Ckeck packages
+- setup:
+    filter: ansible*
+
 - name: Ensure all packages have been installed
   package:
     state: present 
