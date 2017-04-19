@@ -2,10 +2,9 @@
 
 - name: Pinging hosts
   shell: rm -f /tmp/deploy.tmp
-         set +e ;  nmap -p 22 {{inventory_hostname}} && exit 0 ||
-         nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0 ||
-         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0                      
-         >> /tmp/deploy.tmp
+         set +e ;  nmap -p 22 {{inventory_hostname}}  >> /tmp/deploy.tmp && exit 0 ||
+         nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}}  >> /tmp/deploy.tmp && exit 0 ||
+         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}}  >> /tmp/deploy.tmp && exit 0                      
   delegate_to: 127.0.0.1
   ignore_errors: true
 
