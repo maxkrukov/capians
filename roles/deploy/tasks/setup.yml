@@ -1,14 +1,4 @@
 ---
-# Ckeck packages
-- name: Ensure all packages have been installed
-  package:
-    state: present 
-    name: "{{ item }}"
-  with_items:
-        - git
-        - tar
-       
-    
 
 # Setup folders
 - name: Ensure deployment structure exists
