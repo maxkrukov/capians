@@ -1,14 +1,4 @@
 ---
-
-# Ckeck packages
-- name: Ensure all packages have been installed
-  package:
-    state: present 
-    name: "{{ item }}"
-  with_items:
-        - git
-        - tar
-        - nmap
    
 - file: 
      path: /tmp/deploy.tmp
@@ -34,3 +24,14 @@
 - name: Are all hosts present?
   shell: /bin/bash /tmp/deploy.tmp
   delegate_to: 127.0.0.1
+  
+  
+# Ckeck packages
+- name: Ensure all packages have been installed
+  package:
+    state: present 
+    name: "{{ item }}"
+  with_items:
+        - git
+        - tar
+       
