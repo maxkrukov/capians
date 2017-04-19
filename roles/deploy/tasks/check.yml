@@ -29,7 +29,7 @@
   run_once: true
   register: errs
   
-- local_action: debug var=errs
+- local_action: debug msg="{{errs.stdout_lines}}"
   run_once: true
  
 - name: Are all hosts present?
