@@ -5,7 +5,7 @@
      var: hostvars[inventory_hostname]
 
 - name: Pinging hosts
-  local_action: command curl {{ansible_ssh_host}}:22 2>/dev/null
+  local_action: command curl -q {{inventory_hostname}}:22 2>/dev/null
   ignore_errors: true
   register: ping_status
  
