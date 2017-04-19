@@ -1,9 +1,7 @@
 ---
 
-- name: Display all variables/facts known for a host
-  debug:
-    var: hostvars[inventory_hostname]
-    verbosity: 4
+- debug:
+     var: hostvars[inventory_hostname]
 
 - name: Pinging hosts
   local_action: command curl {{ansible_ssh_host}}:22 2>/dev/null
