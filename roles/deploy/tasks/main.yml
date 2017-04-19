@@ -6,7 +6,7 @@
   ignore_errors: true
  
 - debug:
-    msg: "{{ping_status.stdout}"
+    var: ping_status
 
 - setup:
        filter: ansible_*
