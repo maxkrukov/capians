@@ -1,9 +1,8 @@
 ---
 
 - name: Pinging hosts
-  raw: hostname
-  register: ping_status
-  ignore_errors: true
+  command: /usr/bin/take_out_of_pool {{ inventory_hostname }}
+  delegate_to: 127.0.0.1
  
 - debug:
     var: ping_status
