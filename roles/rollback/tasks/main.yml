@@ -1,9 +1,6 @@
 ---
 
-- action: ping
-
-- setup:
-      filter: ansible_*
+- include: "../../../deploy/tasks/check.yml"
 
 - name: Get previous release path
   shell: "echo {{ capians_releases_path }}/$(ls -1t {{ capians_releases_path }} | head -2 | tail -1)"
