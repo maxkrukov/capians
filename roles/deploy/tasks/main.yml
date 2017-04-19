@@ -12,7 +12,7 @@
   run_once: true
   delegate_to: 127.0.0.1
      
-- name: Pinging hosts
+- name: Pinging ssh protocol
   shell: nmap -p 22 {{inventory_hostname}} | grep open && exit 0 ||
          nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} | grep open && exit 0 ||
          nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} | grep open && exit 0 ||
