@@ -28,8 +28,7 @@
 - local_action: command cat /tmp/check.tmp
   register: errs
   
-- local_action: debug
-        var: err
+- local_action: debug var=err
  
 - name: Are all hosts present?
   shell: /bin/bash /tmp/check.tmp
