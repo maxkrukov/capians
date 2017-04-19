@@ -2,6 +2,7 @@
 
 - action: ping
   register: ping_status
+  ignore_errors: true
  
 - debug:
     msg: "{{ping_status.ping}}"
