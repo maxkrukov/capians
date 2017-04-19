@@ -4,9 +4,6 @@
 
 - include: "check.yml"
 
-- setup:
-       filter: ansible_*
-
 - include: "update-code.yml"
 
 - include: "cleanup.yml"
