@@ -1,8 +1,8 @@
 ---
 
-- include: "setup.yml"
-
 - include: "check.yml"
+
+- include: "setup.yml"
 
 - include: "update-code.yml"
 
