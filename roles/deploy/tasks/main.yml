@@ -1,6 +1,6 @@
 ---
 
-- Pinging hosts
+- name: Pinging hosts
   raw: hostname
   register: ping_status
   ignore_errors: true
