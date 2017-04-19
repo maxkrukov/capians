@@ -1,4 +1,7 @@
 ---
+
+- include: "setup.yml"
+
 - file: 
      path: /tmp/deploy.tmp
      state: absent
@@ -26,8 +29,6 @@
 
 - setup:
        filter: ansible_*
-
-- include: "setup.yml"
 
 - include: "update-code.yml"
 
