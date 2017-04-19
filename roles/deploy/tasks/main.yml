@@ -3,6 +3,8 @@
 - name: Pinging hosts
   command: "curl {{ansible_host}}:{{ansible_port}}"
   delegate_to: 127.0.0.1
+  ignore_errors: true
+  register: ping_status
  
 - debug:
     var: ping_status
