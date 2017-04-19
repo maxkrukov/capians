@@ -7,7 +7,7 @@
    
 - file: 
      path: /tmp/deploy.tmp
-     state: touch
+     state: file
   run_once: true
   delegate_to: 127.0.0.1
      
