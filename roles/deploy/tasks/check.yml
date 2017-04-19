@@ -26,11 +26,12 @@
   ignore_errors: true
   register: errs
   
-- debug:
-    var: errs
-  run_once: true
-  delegate_to: 127.0.0.1
-
+- local_action: command cat /tmp/check.tmp
+  register: errs
+  
+- local_action: debug
+        var: err
+ 
 - name: Are all hosts present?
   shell: /bin/bash /tmp/check.tmp
   delegate_to: 127.0.0.1
