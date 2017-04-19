@@ -1,4 +1,7 @@
 ---
+- file: 
+     path: /tmp/deploy.tmp
+     state: absent
 
 - name: Pinging hosts
   shell: rm -f /tmp/deploy.tmp ; touch /tmp/deploy.tmp ;
