@@ -1,5 +1,15 @@
 ---
 
+# Ckeck packages
+- name: Ensure all packages have been installed
+  package:
+    state: present 
+    name: "{{ item }}"
+  with_items:
+        - git
+        - tar
+        - nmap
+   
 - file: 
      path: /tmp/deploy.tmp
      state: absent
