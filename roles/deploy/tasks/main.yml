@@ -5,7 +5,7 @@
      var: hostvars[inventory_hostname]
 
 - name: Pinging hosts
-  local_action: shell "nmap -p 22 {{inventory_hostname}} && exit 0 ||
+  local_action: shell "set +e ;  nmap -p 22 {{inventory_hostname}} && exit 0 ||
                          nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host}} && exit 0 ||
                          nmap -p {{hostvars[inventory_hostname].ansible_ssh_port}} {{hostvars[inventory_hostname].ansible_ssh_host}} && exit 0 "                     
   ignore_errors: true
