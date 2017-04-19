@@ -10,12 +10,4 @@
      msg: "{{sometext.stdout_lines}}"
   run_once: yes
 
-- name: Delete release if it is brocken
-  file:
-     path: "{{previous_release_path.stdout}}"
-     state: absent
-  when: sometext|failed
-
-- name: Failing cause of errors
-  command: /bin/false
-  when: sometext|failed   
+ 
