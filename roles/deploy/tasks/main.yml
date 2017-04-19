@@ -1,15 +1,16 @@
 ---
 
 - name: Pinging hosts
-  shell: rm -f /tmp/deploy.tmp
-         set +e ;  nmap -p 22 {{inventory_hostname}}  && exit 0 ||
+  shell: rm -f /tmp/deploy.tmp ; touch /tmp/deploy.tmp ;
+         nmap -p 22 {{inventory_hostname}} && exit 0 ||
          nmap -p 22  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}}  && exit 0 ||
-         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0                      
+         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} && exit 0 ||
+         echo 'false' >> /tmp/deploy.tmp
   delegate_to: 127.0.0.1
   ignore_errors: true
 
 - name: Are all hosts present?
-  shell: cat /tmp/deploy.tmp | grep -q '22/tcp closed'
+  shell: cat /tmp/deploy.tmp | grep  'false'
   delegate_to: 127.0.0.1
 
 - setup:
