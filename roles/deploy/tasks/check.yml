@@ -20,6 +20,9 @@
          nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} 
                  {{hostvars[inventory_hostname].ansible_ssh_host | default('')}} 2>/dev/null 
                            | grep -q open && exit 0 ||
+         nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('')}} 
+                 {{inventory_hostname}} 2>/dev/null 
+                           | grep -q open && exit 0 ||                  
          echo 'false {{inventory_hostname}}' | tee -a /tmp/check.tmp
          "
   delegate_to: 127.0.0.1
