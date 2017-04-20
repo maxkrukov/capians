@@ -11,12 +11,6 @@
   run_once: true
   register: capians_release_path
   
-# Setup release folder
-- name: Ensure release path exists
-  file:
-    state: directory
-    path: "{{ capians_release_path.stdout }}"
-
 - include: "scm/{{ capians_scm }}_{{capians_git_method}}.yml"
 
 - name: Copy release version into REVISION file in release path
