@@ -19,10 +19,9 @@
           " 
   run_once: true
   register: git_heads
-  ignore_errors: True
 
 - fail: 
-     var: git_heads
+     msg: "Git credentials are wrong!"
   when: git_heads|failed
 
 - debug: 
