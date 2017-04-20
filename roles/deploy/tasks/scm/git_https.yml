@@ -68,7 +68,9 @@
   when: result1|failed or result2|failed
   
 - name: GIT | Create release`s files
-  shell: "cd {{ capians_repo_path }} && git archive {{ capians_git_branch }} | tar -x -f - -C {{ capians_release_path.stdout }}"
+  shell: "cd {{ capians_repo_path }} && 
+          mkdir -p {{ capians_release_path.stdout }} &&
+          git archive {{ capians_git_branch }} | tar -x -f - -C {{ capians_release_path.stdout }}"
   
 - name: GIT | Get git revision
   shell: "cd {{ capians_repo_path }} && git show-ref --head --dereference |  egrep '{{ capians_git_branch }}$' | awk '{print$1}' "
