@@ -15,14 +15,20 @@
   shell: "
           /bin/bash -c 'set -x ;
           git ls-remote --heads {{git_url.stdout}}' 2>&1 | sed 
-                 -e 's|:.*@|:XXXXXX@|g'
+                 -e 's|:.*@|:XXXXXX@|g' ; exit  ${PIPESTATUS[0]}
           " 
   run_once: true
   register: git_heads
+  ignore_errors: True
+
+- fail: 
+     var: git_heads
+  when: git_heads|failed
 
 - debug: 
      msg: "{{ git_heads.stdout_lines | regex_replace('\\\\t', ' ') }}"
   run_once: true
+  when: git_heads|succeeded
   
   
 - name: GIT | Clone/update repo 
