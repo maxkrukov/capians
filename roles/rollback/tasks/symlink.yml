@@ -1,14 +1,8 @@
 ---
 
-- name: Get stats current symlink 
-  stat:
-    path: "{{ capians_deploy_to }}/current"
-  register: stat_current_dir
-
-
 - name: Delete brocken release
   file:
-    path: "{{ stat_current_dir.stat.lnk_source }}"
+    path: "{{current_release_path.stdout}}"
     state: absent  
   
   # Performs symlink exchange
@@ -17,7 +11,8 @@
     state: link
     path: "{{ capians_deploy_to }}/current"
     src:   "{{ previous_release_path.stdout }}"
+    force: yes
 
-  
 - name: Rollback register
-  shell: 'echo "rollback was done to REVISION: $(cat {{ previous_release_path.stdout }}/REVISION )" >> {{ capians_revision }}'
+  shell: 'echo "rollback was done to REVISION: 
+          $(cat {{ previous_release_path.stdout }}/REVISION || true )" >> {{ capians_revision }}'
