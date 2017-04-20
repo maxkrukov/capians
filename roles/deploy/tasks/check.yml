@@ -14,8 +14,8 @@
   delegate_to: 127.0.0.1
      
 - name: Pinging ssh protocol
-  shell: "nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default(22)}} 
-                  {{hostvars[inventory_hostname].ansible_ssh_host | default({{inventory_hostname}})}} 2>/dev/null         
+  shell: "nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('22')}} 
+                  {{hostvars[inventory_hostname].ansible_ssh_host | default('{{inventory_hostname}}')}} 2>/dev/null         
                            | grep -q open && exit 0 ||                  
          echo 'false {{inventory_hostname}}' | tee -a /tmp/check.tmp
          "
