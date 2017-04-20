@@ -21,9 +21,8 @@
          "
   delegate_to: 127.0.0.1
   ignore_errors: true
-  register: ttt
-  
-- debug: var=ttt
+#  register: ttt
+#- debug: var=ttt
   
 - local_action: command cat /tmp/check.tmp
   run_once: true
