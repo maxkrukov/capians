@@ -1,17 +1,16 @@
 ---
 
-- name: Delete brocken release
-  file:
-    path: "{{current_release_path.stdout}}"
-    state: absent  
-  
-  # Performs symlink exchange
 - name: Change softlink to new release
   file:
     state: link
     path: "{{ capians_deploy_to }}/current"
     src:   "{{ previous_release_path.stdout }}"
     force: yes
+    
+- name: Delete brocken release
+  file:
+    path: "{{current_release_path.stdout}}"
+    state: absent   
 
 - name: Rollback register
   shell: 'echo "rollback was done to REVISION: 
