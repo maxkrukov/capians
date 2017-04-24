@@ -6,6 +6,11 @@ It is based on ansible with capistrano3 algorithm.
 It keeps git repo in bare form. So it saves time 
 especially using a large repos.
 
+## Requirements
+- *ansible 2.3.0.0
+- *Vagrant 1.8.1
+- *vittualbox 4.3 or higher
+
 ## How to test
 You need to install ansible, vagrant and virtualbox
 ```
