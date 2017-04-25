@@ -30,6 +30,13 @@ pipelineJob('Capians_deploy') {
        stringParam('git_user', '', 'git user name is needed for https only')
        stringParam('git_pass', '', 'git pass name is needed for https only')
        stringParam('git_key', '', 'path to rsa_key is needed for ssh only')
-       
+       stringParam('git_branch', '', '')
+       stringParam('keep_releases', '5', '')
+       textParam('hosts', '
+[hosts]
+host1
+host2 ansible_ssh_host=45.45.45.45 ansible_ssh_port=2222
+                            ', 'nodes to deploy')
+              
     }
 }
