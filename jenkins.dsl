@@ -24,11 +24,12 @@ pipelineJob('Capians_deploy') {
 
        choiceParam('action', ['deploy', 'rollback'])
        booleanParam('testing', false, 'check to disable tests')
-       stringParam('myParameterName0', 'my default stringParam value', 'my description')
-       stringParam('myParameterName1', 'my default stringParam value', 'my description')
-       stringParam('myParameterName2', 'my default stringParam value', 'my description')
-       stringParam('myParameterName3', 'my default stringParam value', 'my description')
-       stringParam('myParameterName4', 'my default stringParam value', 'my description')
+       stringParam('deploy_to', '/tmp/test', 'path to deploy into')
+       stringParam('git_method', 'https', 'https or ssh')
+       stringParam('git_repo', '', 'git repo url')
+       stringParam('git_user', '', 'git user name is needed for https only')
+       stringParam('git_pass', '', 'git pass name is needed for https only')
+       stringParam('git_key', '', 'path to rsa_key is needed for ssh only')
        
     }
 }
