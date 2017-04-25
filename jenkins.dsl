@@ -16,7 +16,7 @@ pipelineJob('Capians_deploy') {
     }
      parameters {
         credentialsParam('credsID') {
-            type('com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey')
+            type('com.cloudbees.jenkins.plugins.sshcredentials.impl.UsernamePasswordCredentialsImpl')
             required()
             defaultValue('')
             description('SSH user and password for ansible')
