@@ -23,7 +23,7 @@ pipelineJob('Capians_deploy') {
         }
 
        choiceParam('action', ['deploy', 'rollback'])
-       booleanParam('testing', false, 'check to disable tests')
+       booleanParam('testing', false, 'check to enable tests')
        stringParam('deploy_to', '/tmp/test', 'path to deploy into')
        stringParam('git_method', 'https', 'https or ssh')
        stringParam('git_repo', '', 'git repo url')
@@ -49,28 +49,28 @@ src2 dest2;
               
        textParam('deploy_pre_symlink', '''chmod 775 -R \$1
 chown apache:apache -R \$1
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('deploy_after_symlink', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('rollback_pre_symlink', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('rollback_after_symlink', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('deploy_pre_symlink_once', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('deploy_after_symlink_once', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('rollback_pre_symlink_once', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        textParam('rollback_after_symlink_once', '''
-                            ''', '\$1 - release path')
+                            ''', '\$1 - release path; \$2 - deploy_to path')
 
        stringParam('domain', '', 'http(s):// or domain.com')
 
