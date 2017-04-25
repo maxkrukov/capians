@@ -32,11 +32,56 @@ pipelineJob('Capians_deploy') {
        stringParam('git_key', '', 'path to rsa_key is needed for ssh only')
        stringParam('git_branch', '', '')
        stringParam('keep_releases', '5', '')
-       textParam('hosts', '''
-[hosts]
+
+       textParam('hosts', '''[hosts]
 host1
 host2 ansible_ssh_host=45.45.45.45 ansible_ssh_port=2222
                             ''', 'nodes to deploy')
+
+       textParam('vars', '''var1: value1
+var2: value2
+var3: value3
+                            ''', 'template vars')
+
+       textParam('templates', '''src1 dest1;
+src2 dest2;
+                            ''', 'templates: source dest;')
               
+       textParam('deploy_pre_symlink', '''chmod 775 -R \$1
+chown apache:apache -R \$1
+                            ''', '\$1 - release path')
+
+       textParam('deploy_after_symlink', '''
+                            ''', '\$1 - release path')
+
+       textParam('rollback_pre_symlink', '''
+                            ''', '\$1 - release path')
+
+       textParam('rollback_after_symlink', '''
+                            ''', '\$1 - release path')
+
+       textParam('deploy_pre_symlink_once', '''
+                            ''', '\$1 - release path')
+
+       textParam('deploy_after_symlink_once', '''
+                            ''', '\$1 - release path')
+
+       textParam('rollback_pre_symlink_once', '''
+                            ''', '\$1 - release path')
+
+       textParam('rollback_after_symlink_once', '''
+                            ''', '\$1 - release path')
+
+       stringParam('domain', '', 'http(s):// or domain.com')
+
+       textParam('test_script', '''
+                            ''', '')
+
+
+       stringParam('test_ip', '', '')
+       stringParam('test_port', '', '')
+       stringParam('token', '', 'TELEGRAM')
+       stringParam('chat_id', '', 'TELEGRAM')
+
     }
 }
