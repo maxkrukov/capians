@@ -15,12 +15,15 @@ pipelineJob('Capians_deploy') {
         }
     }
      parameters {
-        credentialsParam('DEPLOY_KEY') {
+        credentialsParam('credsID') {
             type('com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey')
             required()
-            defaultValue('ssh-key-staging')
-            description('SSH Key for deploying build artifacts')
+            defaultValue('')
+            description('SSH user and password for ansible')
         }
+
+       choiceParam('action', ['deploy', 'rollback'])
+       booleanParam('testing', false, 'check to disable tests')
        stringParam('myParameterName0', 'my default stringParam value', 'my description')
        stringParam('myParameterName1', 'my default stringParam value', 'my description')
        stringParam('myParameterName2', 'my default stringParam value', 'my description')
