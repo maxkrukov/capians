@@ -39,9 +39,10 @@ vagrant up
 cp vars.example vars  # Set your vars into it
 ```
 ## Custom tasks
-You can also configure templates, {pre,after}-symlink tasks for deploy/rollback
-Configure files located in roles/{deploy/rollback}/tasks/custom/
-It has ansible [yaml syntax](http://docs.ansible.com/ansible/list_of_all_modules.html)
+
+You can also configure templates, {pre,after}-symlink tasks for deploy/rollback .
+Configure files located in roles/{deploy/rollback}/tasks/custom/ .
+It has ansible [yaml syntax](http://docs.ansible.com/ansible/list_of_all_modules.html).
 
 
 ##### To deploy:
