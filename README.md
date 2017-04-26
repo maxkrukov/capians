@@ -64,7 +64,7 @@ ansible-playbook deploy.yml -e "act=rollback"
 ## About
 It is very simple tool for deploy, rollback, testing based on ansible and jenkins. Job is fully parameterized. 
 You need to run jenkins.dsl script to configure job structure. Then set all parameters for your environment.
-Instruction is provided below.
+Instruction will be provided below soon.
 
 
 ## Requirements
