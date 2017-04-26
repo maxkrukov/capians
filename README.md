@@ -11,7 +11,7 @@ especially using a large repos.
 - *Vagrant 1.8.1*
 - *virtualbox 4.3 or higher*
 
-## How to test
+# How to test
 You need to install ansible, vagrant and virtualbox
 ```
 yum install -y git ansible vagrant virtualbox
@@ -41,4 +41,14 @@ ansible-playbook deploy.yml
 ```
 ansible-playbook deploy.yml -e "act=rollback"
 ```
+
+# Jenkins integration with telegram massaging
+
+## Requirements
+- *ansible 2.3.0.0*
+- *jenkins 2.40 or higher*
+   - *Ansible Plugin* https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin
+   - *SSH Agent Plugin* https://wiki.jenkins-ci.org/display/JENKINS/SSH+Agent+Plugin
+   - *Job DSL plugin* https://plugins.jenkins.io/job-dsl
+
 
