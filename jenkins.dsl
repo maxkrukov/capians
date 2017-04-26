@@ -22,7 +22,7 @@ pipelineJob('Capians_deploy') {
             description('SSH user and password for ansible')
         }
 
-       choiceParam('action', ['deploy', 'rollback'])
+       choiceParam('action', ['deploy', 'rollback'], '')
        booleanParam('testing', false, 'check to enable tests')
        stringParam('deploy_to', '/tmp/test', 'path to deploy into')
        stringParam('git_method', 'https', 'https or ssh')
