@@ -65,7 +65,7 @@ It has ansible [yaml syntax](http://docs.ansible.com/ansible/list_of_all_modules
 
 ## About
 It is very simple tool for deploy, rollback, testing based on ansible and jenkins. Job is fully parameterized. 
-You need to run [jenkins.dsl script](https://github.com/maxkrukov/capians/blob/test/jenkins.dsl) to configure job structure. Then set all parameters for your environment.
+You need to run [jenkins.dsl script](https://github.com/maxkrukov/capians/blob/master/jenkins.dsl) to configure job structure. Then set all parameters for your environment.
 Instruction will be provided below soon.
 
 
