@@ -4,6 +4,9 @@ Tool for deployment (deploy & rollback) via git (https or ssh).
 ## **Links**
 - [About](https://github.com/maxkrukov/capians/tree/test#about)
 - [How to test](https://github.com/maxkrukov/capians/tree/test#how-to-test)
+  - [vagrant testing on local machine]()
+  - [jenkins testing]()
+- [console usage]()
   - [Requirements](https://github.com/maxkrukov/capians/tree/test#requirements)
   - [Custom tasks](https://github.com/maxkrukov/capians/tree/test#custom-tasks)
 - [Jenkins integration with telegram massaging]()  
