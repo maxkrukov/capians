@@ -11,7 +11,7 @@ pipelineJob('Capians_deploy') {
                  extensions {wipeOutWorkspace()}
                 }
             }
-            script(readFileFromWorkspace('Jenkinsfile'))
+            scriptPath('Jenkinsfile')
         }
     }
      parameters {
