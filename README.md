@@ -4,7 +4,7 @@ Tool for deployment (deploy & rollback) via git (https or ssh).
 ## **Links**
 - [About](https://github.com/maxkrukov/capians/tree/test#about)
 - [How to test](https://github.com/maxkrukov/capians/tree/test#how-to-test)
-  - [vagrant testing on local machine]()
+  - [vagrant testing on local machine](https://github.com/maxkrukov/capians/blob/test/README.md#console-usage)
   - [jenkins testing]()
 - [console usage](https://github.com/maxkrukov/capians/blob/test/README.md#console-usage)
   - [Requirements](https://github.com/maxkrukov/capians/tree/test#requirements)
