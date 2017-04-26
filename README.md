@@ -19,7 +19,9 @@ It is based on ansible with capistrano3 algorithm.
 It keeps git repo in bare form. So it saves time 
 especially using a large repos.
 
-# How to test
+## **How to test**
+
+# Console usage
 
 ## Requirements
 - *ansible 2.3.0.0*
