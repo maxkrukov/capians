@@ -72,7 +72,7 @@ chown apache:apache -R \$1
        textParam('rollback_after_symlink_once', '''
                             ''', '\$1 - release path; \$2 - deploy_to path')
 
-       stringParam('domain', '', 'http(s):// or domain.com')
+       stringParam('domain', '', 'http(s)://domain.com or domain.com')
 
        textParam('test_script', '''
                             ''', '')
