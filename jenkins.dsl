@@ -8,10 +8,10 @@ pipelineJob('Capians_deploy') {
                  url('https://github.com/maxkrukov/capians.git')
                 }
                  branch('master')
-                 extensions {wipeOutWorkspace()}                 
+                 extensions {wipeOutWorkspace()}
                 }
-              
             }
+            script(readFileFromWorkspace('Jenkinsfile'))
         }
     }
      parameters {
