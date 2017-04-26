@@ -7,7 +7,7 @@ Tool for deployment (deploy & rollback) via git (https or ssh).
   - [Requirements](https://github.com/maxkrukov/capians/tree/test#requirements)
   - [Custom tasks](https://github.com/maxkrukov/capians/tree/test#custom-tasks)
 - [Jenkins integration with telegram massaging]()  
-  - [About]()
+  - [About](https://github.com/maxkrukov/capians/tree/test#about-1)
   - [Requirements](https://github.com/maxkrukov/capians/tree/test#requirements-1)
 
 
