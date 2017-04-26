@@ -17,7 +17,8 @@ Tool for deployment (deploy & rollback) via git (https or ssh).
 ## About
 It is based on ansible with capistrano3 algorithm.
 It keeps git repo in bare form. So it saves time 
-especially using a large repos.
+especially using a large repos. Optionally it is integrated with jenkins
+with Telegram massaging.
 
 ## **How to test**
 
