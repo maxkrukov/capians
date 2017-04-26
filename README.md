@@ -72,6 +72,7 @@ Instruction will be provided below soon.
 ## Requirements
 - *ansible 2.3.0.0*
 - *jenkins 2.40 or higher*
+   - install suggested plugins
    - [*Ansible Plugin*](https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin)
    - [*SSH Agent Plugin*](https://wiki.jenkins-ci.org/display/JENKINS/SSH+Agent+Plugin)
    - [*Job DSL plugin*](https://plugins.jenkins.io/job-dsl)
