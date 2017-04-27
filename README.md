@@ -2,16 +2,16 @@
 Tool for deployment (deploy & rollback) via git (https or ssh).
 
 ## **Links**
-- [About](https://github.com/maxkrukov/capians/tree/test#about)
-- [How to test](https://github.com/maxkrukov/capians/tree/test#how-to-test)
-  - [vagrant testing on local machine](https://github.com/maxkrukov/capians/blob/test/README.md#console-usage)
+- [About](https://github.com/maxkrukov/capians/tree/master#about)
+- [How to test](https://github.com/maxkrukov/capians/tree/master#how-to-test)
+  - [vagrant testing on local machine](https://github.com/maxkrukov/capians/blob/master/README.md#console-usage)
   - [jenkins testing]()
-- [console usage](https://github.com/maxkrukov/capians/blob/test/README.md#console-usage)
-  - [Requirements](https://github.com/maxkrukov/capians/tree/test#requirements)
-  - [Custom tasks](https://github.com/maxkrukov/capians/tree/test#custom-tasks)
+- [console usage](https://github.com/maxkrukov/capians/blob/master/README.md#console-usage)
+  - [Requirements](https://github.com/maxkrukov/capians/tree/master#requirements)
+  - [Custom tasks](https://github.com/maxkrukov/capians/tree/master#custom-tasks)
 - [Jenkins integration with telegram massaging]()  
-  - [About](https://github.com/maxkrukov/capians/tree/test#about-1)
-  - [Requirements](https://github.com/maxkrukov/capians/tree/test#requirements-1)
+  - [About](https://github.com/maxkrukov/capians/tree/master#about-1)
+  - [Requirements](https://github.com/maxkrukov/capians/tree/master#requirements-1)
 
 
 ## About
