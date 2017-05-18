@@ -13,6 +13,7 @@
      state: touch
   run_once: true
   delegate_to: 127.0.0.1
+  become: false
      
 - name: Pinging ssh protocol
   shell: "nmap -p {{hostvars[inventory_hostname].ansible_ssh_port | default('22')}} 
@@ -22,6 +23,7 @@
          "
   delegate_to: 127.0.0.1
   ignore_errors: true
+  become: false
 #  register: ttt
 #- debug: var=ttt
   
