@@ -30,14 +30,17 @@
 - local_action: command cat /tmp/check.tmp
   run_once: true
   register: errs
+  become: false
   
 - local_action: debug msg="{{errs.stdout_lines}}"
   run_once: true
+  become: false
  
 - name: Are all hosts present?
   shell: /bin/bash /tmp/check.tmp
   delegate_to: 127.0.0.1
   no_log: True
+  become: false
   
 # Ckeck packages
 - setup:
