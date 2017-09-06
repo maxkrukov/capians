@@ -1,3 +1,5 @@
+if (node = null) { def node = 'master' }
+
 node("${node}") {
     step([$class: 'WsCleanup'])
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
