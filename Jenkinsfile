@@ -1,8 +1,8 @@
-if (node_) {
+if (node) {
 	node_ = node
 	println(node_)
 } esle {
-	node = 'master'
+	node_ = 'master'
 	println(node_)
 }
 
