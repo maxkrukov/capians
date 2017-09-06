@@ -1,12 +1,4 @@
-if (node) {
-	node_ = node
-	println(node_)
-} esle {
-	node_ = 'master'
-	println(node_)
-}
-
-node(node_) {
+node("${node}") {
     step([$class: 'WsCleanup'])
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
 	currentBuild.description = "Code Deployment"
