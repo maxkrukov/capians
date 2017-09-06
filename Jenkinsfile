@@ -28,12 +28,12 @@ node("${node}") {
           - name: Fetching template !!! `echo $line | awk \'{print$1}\'` !!!
             fetch:
               src:   \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$1}\'`\\\"
-              dest: \\\"./tmp\\\"
+              dest: \\\"./`echo $line | awk \'{print$1}\'`\\\"
               flat: yes
             run_once: true
           - name: Running template !!! `echo $line | awk \'{print$1}\'` !!!
             template:
-              src:   \\\"./tmp\\\"
+              src:   \\\"./`echo $line | awk \'{print$1}\'`\\\"
               dest: \\\"{{capians_release_path.stdout}}/`echo $line | awk \'{print$2}\'`\\\" "
                    done >> roles/deploy/tasks/custom/template.yml'''
       
