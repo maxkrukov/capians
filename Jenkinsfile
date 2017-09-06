@@ -1,4 +1,4 @@
-if (node == null) { def node = 'master' }
+if (env.node == null) { env.node = 'master' }
 
 node("${node}") {
     step([$class: 'WsCleanup'])
