@@ -57,7 +57,7 @@ node("${node}") {
         ansiblePlaybook colorized: false, 
             credentialsId: credsID, 
             playbook: 'deploy.yml', 
-            sudo: true, 
+            become: true, 
             extraVars: [
                 act: action,
 		git_method: git_method,
