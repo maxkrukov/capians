@@ -1,6 +1,6 @@
 ---
 
-- include: "../deploy/tasks/check.yml"
+- include_tasks: "../deploy/tasks/check.yml"
 
 - name: Get previous release path
   shell: "echo {{ capians_releases_path }}/$(ls -1t {{ capians_releases_path }} | head -2 | tail -1)"
@@ -10,15 +10,15 @@
   shell: "echo {{ capians_releases_path }}/$(ls -1t {{ capians_releases_path }} | head -1)"
   register: current_release_path
 
-- include: "check.yml"
+- include_tasks: "check.yml"
 
-- include: "custom/pre_symlink_once.yml"
+- include_tasks: "custom/pre_symlink_once.yml"
 
-- include: "custom/pre_symlink.yml"
+- include_tasks: "custom/pre_symlink.yml"
 
-- include: "symlink.yml"
+- include_tasks: "symlink.yml"
 
-- include: "custom/after_symlink.yml"
+- include_tasks: "custom/after_symlink.yml"
 
-- include: "custom/after_symlink_once.yml"
+- include_tasks: "custom/after_symlink_once.yml"
 
