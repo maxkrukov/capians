@@ -11,22 +11,22 @@
   run_once: true
   register: capians_release_path
   
-- include: "scm/{{ capians_scm }}_{{capians_git_method}}.yml"
+- include_tasks: "scm/{{ capians_scm }}_{{capians_git_method}}.yml"
 
 - name: Copy release version into REVISION file in release path
   shell: echo "{{ revision.stdout }}" > "{{ capians_release_path.stdout }}/REVISION"
 
-- include: "custom/template.yml"
+- include_tasks: "custom/template.yml"
 
-- include: "custom/pre_symlink_once.yml"
+- include_tasks: "custom/pre_symlink_once.yml"
   
-- include: "custom/pre_symlink.yml"
+- include_tasks: "custom/pre_symlink.yml"
   
-- include: "symlink.yml"
+- include_tasks: "symlink.yml"
 
-- include: "custom/after_symlink_once.yml"
+- include_tasks: "custom/after_symlink_once.yml"
 
-- include: "custom/after_symlink.yml"
+- include_tasks: "custom/after_symlink.yml"
 
 - name: Copy release version into REVISION file in deploy_to path
   shell: echo "{{ revision.stdout }}" > "{{ capians_revision }}"
