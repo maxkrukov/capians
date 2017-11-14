@@ -1,10 +1,10 @@
 ---
 
-- include: "check.yml"
+- include_tasks: "check.yml"
 
-- include: "setup.yml"
+- include_tasks: "setup.yml"
 
-- include: "update-code.yml"
+- include_tasks: "update-code.yml"
 
-- include: "cleanup.yml"
+- include_tasks: "cleanup.yml"
 
