@@ -25,7 +25,7 @@ with Telegram massaging.
 # Console usage
 
 ## Requirements
-- *ansible 2.3.0.0*
+- *ansible 2.4.1.0*
 - *Vagrant 1.8.1*
 - *virtualbox 4.3 or higher*
 
