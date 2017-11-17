@@ -107,15 +107,11 @@ if( testing=="true" ){
 """
 
   def action = action
-  
-  def user_build =  sh(returnStdout: true, script:"""#!/bin/bash
-      a=\$(echo '/${JOB_NAME}' | sed 's|/|/jobs/|g')
-      logfile=`echo ${JENKINS_HOME}/\$a/builds/${BUILD_NUMBER}/log`
-      grep -i Started \$logfile | sed -e \"s|.*\\[0m|Deployed by: |g\" 
-      """).trim()
+  def user_build =  "${env.BUILD_USER}"
 
   def details = """Build Action: ${action} 
-${user_build}
+BUILD USER: ${user_build}
+GIT BRANCH: ${git_branch}
 BUILD URL: ${env.BUILD_URL}console
 Project URL: ${env.projectUrl}
 Testing: $testing
