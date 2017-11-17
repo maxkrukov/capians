@@ -70,7 +70,7 @@ Instruction will be provided below soon.
 
 
 ## Requirements
-- *ansible 2.3.0.0*
+- *ansible 2.4.1.0*
 - *jenkins 2.40 or higher*
    - install suggested plugins
    - [*Ansible Plugin*](https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin)
