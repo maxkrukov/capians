@@ -110,7 +110,8 @@ if( testing=="true" ){
   def user_build =  "${env.BUILD_USER}"
 
   def details = """Build Action: ${action} 
-BUILD USER/BRANCH: ${user_build} / ${git_repo}
+BUILD USER: ${user_build}
+GIT REPO: ${git_repo}
 GIT BRANCH: ${git_branch}
 BUILD URL: ${env.BUILD_URL}console
 Project URL: ${env.projectUrl}
@@ -146,7 +147,8 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
   def user_build =  "${env.BUILD_USER}"
 
   def details = """Build Action: ${action} 
-BUILD USER/BRANCH: ${user_build} / ${git_repo}
+BUILD USER: ${user_build}  
+GIT REPO: ${git_repo}
 GIT BRANCH: ${git_branch}
 BUILD URL: ${env.BUILD_URL}console
 Project URL: ${env.projectUrl}
