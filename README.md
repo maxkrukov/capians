@@ -76,5 +76,6 @@ Instruction will be provided below soon.
    - [*Ansible Plugin*](https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin)
    - [*SSH Agent Plugin*](https://wiki.jenkins-ci.org/display/JENKINS/SSH+Agent+Plugin)
    - [*Job DSL plugin*](https://plugins.jenkins.io/job-dsl)
+   - [*build-user-vars-plugin*](https://wiki.jenkins.io/display/JENKINS/Build+User+Vars+Plugin)
 
 
