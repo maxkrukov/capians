@@ -20,7 +20,7 @@ node("${node}") {
 ////    
 	try {  // Start try_catch
     stage('Loading configs...') {
-        git branch: 'master', url: 'https://github.com/maxkrukov/capians.git' 
+        git branch: 'roles', url: 'https://github.com/maxkrukov/capians.git' 
      
         writeFile file: 'hosts', text: hosts
 
