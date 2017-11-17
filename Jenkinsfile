@@ -1,7 +1,7 @@
 if (env.node == null) { env.node = 'master' }
-wrap([$class: 'BuildUser']) {
 
 node("${node}") {
+    wrap([$class: 'BuildUser']) {
     step([$class: 'WsCleanup'])
 	currentBuild.displayName = ('#' + env.BUILD_NUMBER + ' ' + action )
 	currentBuild.description = "Code Deployment"
@@ -169,5 +169,5 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 	} // End try_catch
 
   }
-}
+  }
 }
