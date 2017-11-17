@@ -1,4 +1,5 @@
 if (env.node == null) { env.node = 'master' }
+wrap([$class: 'BuildUser']) {
 
 node("${node}") {
     step([$class: 'WsCleanup'])
@@ -173,4 +174,4 @@ sh ''' for i in `echo ${chat_id} | sed "s/,/  /g"` ; do
 
   }
 }
-
+}
