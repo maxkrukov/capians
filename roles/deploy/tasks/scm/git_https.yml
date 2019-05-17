@@ -13,9 +13,8 @@
 
 - name: GIT | Check git repository
   shell: "
-          /bin/bash -c 'set -x ;
-          git ls-remote --heads {{git_url.stdout}}' 2>&1 | sed 
-                 -e 's|:.*@|:XXXXXX@|g' ; exit  ${PIPESTATUS[0]}
+          git ls-remote --heads {{git_url.stdout}} 2>&1 | sed -e 's|:.*@|:XXXXXX@|g' ; 
+          exit  ${PIPESTATUS[0]}
           " 
   run_once: true
   register: git_heads
