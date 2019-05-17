@@ -11,22 +11,22 @@
   run_once: true
   register: git_url
 
-- name: GIT | Check git repository
-  shell: "
-          git ls-remote --heads {{git_url.stdout}} 2>&1 | sed -e 's|:.*@|:XXXXXX@|g' ; 
-          exit  ${PIPESTATUS[0]}
-          " 
-  run_once: true
-  register: git_heads
+#- name: GIT | Check git repository
+#  shell: "
+#          git ls-remote --heads {{git_url.stdout}} 2>&1 | sed -e 's|:.*@|:XXXXXX@|g' ; 
+#          exit  ${PIPESTATUS[0]}
+#          " 
+#  run_once: true
+#  register: git_heads
 
-- fail: 
-     msg: "Git credentials are wrong!"
-  when: git_heads|failed
+#- fail: 
+#     msg: "Git credentials are wrong!"
+#  when: git_heads|failed
 
-- debug: 
-     msg: "{{ git_heads.stdout_lines | regex_replace('\\\\t', ' ') }}"
-  run_once: true
-  when: git_heads|succeeded
+#- debug: 
+#     msg: "{{ git_heads.stdout_lines | regex_replace('\\\\t', ' ') }}"
+#  run_once: true
+#  when: git_heads|succeeded
   
   
 - name: GIT | Clone/update repo 
